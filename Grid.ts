@@ -1,6 +1,3 @@
-// Build a grid of the specified size
-
-
 class Grid {
     private size: any;
     private cells: any[];
