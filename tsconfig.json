@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "module": "amd",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "outFile": "build/app.js",
+        "sourceMap": true
+    },
+    "exclude": [
+        "node_modules",
+        "wwwroot"
+    ],
+    "files": [
+        "Tile.ts"
+    ]
+}
