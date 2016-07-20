@@ -12,6 +12,7 @@
         "wwwroot"
     ],
     "files": [
-        "Tile.ts"
+        "Tile.ts",
+        "Grid.ts"
     ]
 }
