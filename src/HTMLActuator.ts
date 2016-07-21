@@ -56,7 +56,7 @@ class HTMLActuator {
 
         let wrapper: HTMLDivElement = document.createElement("div");
         let inner: HTMLDivElement = document.createElement("div");
-        let position : Position = tile.previousPosition || { x: tile.x, y: tile.y };
+        let position : Point = tile.previousPosition || { x: tile.x, y: tile.y };
         let positionClass: string = this.positionClass(position);
 
         let classes: string[] = ["tile", "tile-" + tile.value, positionClass];
@@ -72,9 +72,7 @@ class HTMLActuator {
             window.requestAnimationFrame(function () {
                 classes[2] = self.positionClass({ 
                     x: tile.x, 
-                    y: tile.y,
-                    coords: null,
-                    timestamp: null
+                    y: tile.y
                 });
 
                 self.applyClasses(wrapper, classes);
@@ -102,16 +100,14 @@ class HTMLActuator {
         element.setAttribute("class", classes.join(" "));
     }
 
-    public normalizePosition(position: Position): Position {
+    public normalizePosition(position: Point): Point {
         return { 
             x: position.x + 1, 
-            y: position.y + 1,
-            coords: null,
-            timestamp: null
+            y: position.y + 1
         };
     }
 
-    public positionClass(position: Position): string {
+    public positionClass(position: Point): string {
         position = this.normalizePosition(position);
         
         return "tile-position-" + position.x + "-" + position.y;

@@ -1,12 +1,12 @@
 class Tile {
-    public position: Position;
+    public position: Point;
     public value: number;
     public previousPosition: any;
     public x: number;
     public y: number;
     public mergedFrom: any;
     
-    public constructor(position: Position, value: number) {
+    public constructor(position: Point, value: number) {
         this.x = position.x;
         this.y = position.y;
         this.value = value || 2;
@@ -21,7 +21,7 @@ class Tile {
         };
     }
 
-    public updatePosition(position: Position): void {
+    public updatePosition(position: Point): void {
         this.x = position.x;
         this.y = position.y;
     }

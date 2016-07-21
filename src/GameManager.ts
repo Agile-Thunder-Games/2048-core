@@ -116,7 +116,7 @@ class GameManager {
         });
     }
 
-    public moveTile(tile: Tile, cell: Position): void {
+    public moveTile(tile: Tile, cell: Point): void {
         this.grid.cells[tile.x][tile.y] = null;
         this.grid.cells[cell.x][cell.y] = tile;
   
@@ -129,7 +129,7 @@ class GameManager {
 
         if (this.isGameTerminated()) return; // Don't do anything if the game's over
 
-        let cell: Position;
+        let cell: Point;
         var tile: Tile;
 
         var vector: GameManager = this.getVector(direction);
@@ -144,9 +144,7 @@ class GameManager {
             traversals.y.forEach(function (y: number) {
                 cell = { 
                     x: x, 
-                    y: y,
-                    coords: null,
-                    timestamp: null
+                    y: y
                 };
                 tile = self.grid.cellContent(cell);
 
@@ -215,16 +213,14 @@ class GameManager {
         return traversals;
     }
 
-    public findFarthestPosition(cell: Position, vector: any): any {
+    public findFarthestPosition(cell: Point, vector: any): any {
         var previous: any;
 
         do {
             previous = cell;
             cell = { 
                 x: previous.x + vector.x, 
-                y: previous.y + vector.y,
-                coords: null,
-                timestamp: null 
+                y: previous.y + vector.y
             };
         } while (this.grid.withinBounds(cell) && this.grid.cellAvailable(cell));
 
@@ -249,11 +245,9 @@ class GameManager {
                 if (tile) {
                     for (let direction = 0; direction < 4; direction++) {
                         let vector = self.getVector(direction);
-                        let cell: Position  = { 
+                        let cell: Point  = { 
                             x: x + vector.x, 
-                            y: y + vector.y,
-                            coords: null,
-                            timestamp: null 
+                            y: y + vector.y
                         };
 
                         let other: any = self.grid.cellContent(cell);
@@ -269,6 +263,7 @@ class GameManager {
         return false;
     }
 
+    // todo use Point inteface
     public positionsEqual(first: any, second: any): boolean {
         return first.x === second.x && first.y === second.y;
     };

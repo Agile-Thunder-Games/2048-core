@@ -13,7 +13,7 @@
         "wwwroot"
     ],
     "files": [
-        "src/Position.ts",
+        "src/Point.ts",
         "src/Tile.ts",
         "src/Grid.ts",
         "src/KeyboardInputManager.ts",

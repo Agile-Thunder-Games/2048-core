@@ -38,15 +38,15 @@ class Grid {
         return cells;
     }
 
-    public randomAvailableCell(): Position {
-        let cells: Position[] = this.availableCells();
+    public randomAvailableCell(): Point {
+        let cells: Point[] = this.availableCells();
 
         if (cells.length) {
             return cells[Math.floor(Math.random() * cells.length)];
         }
     }
 
-    public availableCells(): Position[] {
+    public availableCells(): Point[] {
         let cells: any[] = [];
 
         this.eachCell(function (x: number, y: number, tile: Tile) {
@@ -97,7 +97,7 @@ class Grid {
         this.cells[tile.x][tile.y] = null;
     }
 
-    public withinBounds(position: Position): boolean {
+    public withinBounds(position: Point): boolean {
         return position.x >= 0 && position.x < this.size && position.y >= 0 && position.y < this.size;
     }
 

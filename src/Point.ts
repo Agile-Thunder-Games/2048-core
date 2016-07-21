@@ -1,4 +1,4 @@
-interface Position {
+interface Point {
     x: number;
     y: number;
 }
