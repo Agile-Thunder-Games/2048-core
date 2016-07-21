@@ -13,6 +13,7 @@
     ],
     "files": [
         "Tile.ts",
-        "Grid.ts"
+        "Grid.ts",
+        "KeyboardInputManager.ts"
     ]
 }
