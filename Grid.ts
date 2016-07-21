@@ -3,7 +3,7 @@ class Grid {
     private cells: any[];
     private previousState: any[];
 
-    public constructor(size: number, previousState: any[]) {
+    public constructor(size: number, previousState?: any[]) {
         this.size = size;
         this.cells = previousState ? this.fromState(previousState) : this.empty();
     }
