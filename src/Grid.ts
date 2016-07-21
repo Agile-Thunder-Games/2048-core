@@ -1,7 +1,7 @@
 class Grid {
-    private size: number;
+    public size: number;
     public cells: any[];
-    private previousState: any[];
+    public previousState: any[];
 
     public constructor(size: number, previousState?: any[]) {
         this.size = size;
@@ -9,12 +9,12 @@ class Grid {
     }
 
     public empty(): number[] {
-        var cells: any[] = [];
+        let cells: any[] = [];
 
-        for (var x = 0; x < this.size; x++) {
-            var row: any = cells[x] = [];
+        for (let x = 0; x < this.size; x++) {
+            let row: any = cells[x] = [];
 
-            for (var y = 0; y < this.size; y++) {
+            for (let y = 0; y < this.size; y++) {
                 row.push(null);
             }
         }
@@ -23,13 +23,13 @@ class Grid {
     }
 
     public fromState(state: any[]): number[] {
-        var cells: any[] = [];
+        let cells: any[] = [];
 
-        for (var x = 0; x < this.size; x++) {
-            var row: any = cells[x] = [];
+        for (let x = 0; x < this.size; x++) {
+            let row: any = cells[x] = [];
 
-            for (var y = 0; y < this.size; y++) {
-                var tile = state[x][y];
+            for (let y = 0; y < this.size; y++) {
+                let tile: Tile = state[x][y];
                 
                 row.push(tile ? new Tile(tile.position, tile.value) : null);
             }
@@ -38,16 +38,16 @@ class Grid {
         return cells;
     }
 
-    public randomAvailableCell(): number {
-        var cells = this.availableCells();
+    public randomAvailableCell(): Position {
+        let cells: Position[] = this.availableCells();
 
         if (cells.length) {
             return cells[Math.floor(Math.random() * cells.length)];
         }
     }
 
-    public availableCells(): number[] {
-        var cells: any[] = [];
+    public availableCells(): Position[] {
+        let cells: any[] = [];
 
         this.eachCell(function (x: number, y: number, tile: Tile) {
             if (!tile) {
@@ -62,8 +62,8 @@ class Grid {
     }
 
     public eachCell(callback: any): void {
-        for (var x = 0; x < this.size; x++) {
-            for (var y = 0; y < this.size; y++) {
+        for (let x = 0; x < this.size; x++) {
+            for (let y = 0; y < this.size; y++) {
                 callback(x, y, this.cells[x][y]);
             }
         }
@@ -102,12 +102,12 @@ class Grid {
     }
 
     public serialize(): any {
-        var cellState: any[] = [];
+        let cellState: any[] = [];
 
-        for (var x = 0; x < this.size; x++) {
-            var row : any = cellState[x] = [];
+        for (let x = 0; x < this.size; x++) {
+            let row : any = cellState[x] = [];
 
-            for (var y = 0; y < this.size; y++) {
+            for (let y = 0; y < this.size; y++) {
                 row.push(this.cells[x][y] ? this.cells[x][y].serialize() : null);
             }
         }

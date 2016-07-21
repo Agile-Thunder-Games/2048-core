@@ -42,7 +42,7 @@ class GameManager {
     }
 
     public setup() {
-        var previousState = this.storageManager.getGameState();
+        let previousState: any = this.storageManager.getGameState();
 
         if (previousState) {
             this.grid = new Grid(previousState.grid.size, previousState.grid.cells);
@@ -63,15 +63,15 @@ class GameManager {
     }
 
     public addStartTiles(): void {
-        for (var i = 0; i < this.startTiles; i++) {
+        for (let i = 0; i < this.startTiles; i++) {
             this.addRandomTile();
         }
     }
 
     public addRandomTile(): void {
         if (this.grid.cellsAvailable()) {
-            var value: number = Math.random() < 0.9 ? 2 : 4;
-            var tile: Tile = new Tile(this.grid.randomAvailableCell(), value);
+            let value: number = Math.random() < 0.9 ? 2 : 4;
+            let tile: Tile = new Tile(this.grid.randomAvailableCell(), value);
 
             this.grid.insertTile(tile);
         }
@@ -116,20 +116,20 @@ class GameManager {
         });
     }
 
-    moveTile(tile: Tile, cell: Position): void {
+    public moveTile(tile: Tile, cell: Position): void {
         this.grid.cells[tile.x][tile.y] = null;
         this.grid.cells[cell.x][cell.y] = tile;
   
         tile.updatePosition(cell);
     }
 
-    public move(direction: string) {
+    public move(direction: number) {
         // 0: up, 1: right, 2: down, 3: left
-        var self = this;
+        let self = this;
 
         if (this.isGameTerminated()) return; // Don't do anything if the game's over
 
-        var cell: any;
+        let cell: Position;
         var tile: Tile;
 
         var vector: GameManager = this.getVector(direction);
@@ -144,17 +144,20 @@ class GameManager {
             traversals.y.forEach(function (y: number) {
                 cell = { 
                     x: x, 
-                    y: y 
+                    y: y,
+                    coords: null,
+                    timestamp: null
                 };
                 tile = self.grid.cellContent(cell);
 
                 if (tile) {
-                    var positions = self.findFarthestPosition(cell, vector);
-                    var next = self.grid.cellContent(positions.next);
+                    let positions: any = self.findFarthestPosition(cell, vector);
+                    let next: any = self.grid.cellContent(positions.next);
 
                     // Only one merger per row traversal?
                     if (next && next.value === tile.value && !next.mergedFrom) {
-                        var merged = new Tile(positions.next, tile.value * 2);
+                        let merged: Tile = new Tile(positions.next, tile.value * 2);
+
                         merged.mergedFrom = [tile, next];
 
                         self.grid.insertTile(merged);
@@ -186,8 +189,8 @@ class GameManager {
         }
     }
 
-    public getVector(direction: any): any {
-        var map : any = {
+    public getVector(direction: number): any {
+        let map: any = {
             0: { x: 0,  y: -1 }, // Up
             1: { x: 1,  y: 0 },  // Right
             2: { x: 0,  y: 1 },  // Down
@@ -198,9 +201,9 @@ class GameManager {
     }
 
    public buildTraversals(vector: any): any {
-        var traversals: any = { x: [], y: [] };
+        let traversals: any = { x: [], y: [] };
 
-        for (var pos = 0; pos < this.size; pos++) {
+        for (let pos = 0; pos < this.size; pos++) {
             traversals.x.push(pos);
             traversals.y.push(pos);
         }
@@ -212,14 +215,16 @@ class GameManager {
         return traversals;
     }
 
-    public findFarthestPosition(cell: any, vector: any): any {
+    public findFarthestPosition(cell: Position, vector: any): any {
         var previous: any;
 
         do {
             previous = cell;
             cell = { 
                 x: previous.x + vector.x, 
-                y: previous.y + vector.y 
+                y: previous.y + vector.y,
+                coords: null,
+                timestamp: null 
             };
         } while (this.grid.withinBounds(cell) && this.grid.cellAvailable(cell));
 
@@ -234,19 +239,24 @@ class GameManager {
     };
 
     public tileMatchesAvailable(): boolean {
-        var self = this;
-        var tile: Tile;
+        let self = this;
+        let tile: Tile;
 
-        for (var x = 0; x < this.size; x++) {
-            for (var y = 0; y < this.size; y++) {
+        for (let x = 0; x < this.size; x++) {
+            for (let y = 0; y < this.size; y++) {
                 tile = this.grid.cellContent({ x: x, y: y });
 
                 if (tile) {
-                    for (var direction = 0; direction < 4; direction++) {
-                        var vector = self.getVector(direction);
-                        var cell   = { x: x + vector.x, y: y + vector.y };
+                    for (let direction = 0; direction < 4; direction++) {
+                        let vector = self.getVector(direction);
+                        let cell: Position  = { 
+                            x: x + vector.x, 
+                            y: y + vector.y,
+                            coords: null,
+                            timestamp: null 
+                        };
 
-                        var other  = self.grid.cellContent(cell);
+                        let other: any = self.grid.cellContent(cell);
 
                         if (other && other.value === tile.value) {
                             return true;

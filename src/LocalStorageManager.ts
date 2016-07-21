@@ -1,21 +1,17 @@
-var fakeStorage = {
-  _data: {},
-
-  setItem: function (id: number, val: string) {
-    return this._data[id] = String(val);
-  },
-
-  getItem: function (id: number) {
-    return this._data.hasOwnProperty(id) ? this._data[id] : undefined;
-  },
-
-  removeItem: function (id: number) {
-    return delete this._data[id];
-  },
-
-  clear: function () {
-    return this._data = {};
-  }
+var fakeStorage: any = {
+    _data: {},
+    setItem: function (id: number, val: string): string {
+        return this._data[id] = String(val);
+    },
+    getItem: function (id: number): any {
+        return this._data.hasOwnProperty(id) ? this._data[id] : undefined;
+    },
+    removeItem: function (id: number): boolean {
+        return delete this._data[id];
+    },
+    clear: function (): any {
+        return this._data = {};
+    }
 };
 
 class LocalStorageManager {
@@ -27,14 +23,14 @@ class LocalStorageManager {
         this.bestScoreKey = "bestScore";
         this.gameStateKey = "gameState";
 
-        var supported: boolean = this.localStorageSupported();
+        let supported: boolean = this.localStorageSupported();
         
         this.storage = supported ? window.localStorage : fakeStorage;
     }
 
     private localStorageSupported(): boolean {
-        var testKey = "test";
-        var storage = window.localStorage;
+        let testKey: string = "test";
+        let storage: Storage = window.localStorage;
 
         try {
             storage.setItem(testKey, "1");
@@ -55,12 +51,12 @@ class LocalStorageManager {
     }
 
     public getGameState(): any {
-        var stateJSON = this.storage.getItem(this.gameStateKey);
+        let stateJSON: string = this.storage.getItem(this.gameStateKey);
 
         return stateJSON ? JSON.parse(stateJSON) : null;
     }
 
-    public setGameState(gameState: any): void {
+    public setGameState(gameState: string): void {
         this.storage.setItem(this.gameStateKey, JSON.stringify(gameState));
     }
 

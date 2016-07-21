@@ -1,8 +1,8 @@
 class KeyboardInputManager {
     private events: any;
-    private eventTouchstart: any;
-    private eventTouchmove: any;
-    private eventTouchend: any;
+    private eventTouchstart: string;
+    private eventTouchmove: string;
+    private eventTouchend: string;
     
     public constructor() {
         this.events = {};
@@ -21,7 +21,7 @@ class KeyboardInputManager {
         this.listen();
     }
 
-    public on(event: any, callback: any): void {
+    public on(event: string, callback: any): void {
         if (!this.events[event]) {
             this.events[event] = [];
         }
@@ -29,8 +29,8 @@ class KeyboardInputManager {
         this.events[event].push(callback);
     }
 
-    public emit(event: any, data?: any): void {
-        var callbacks = this.events[event];
+    public emit(event: string, data?: any): void {
+        let callbacks = this.events[event];
             
         if (callbacks) {
             callbacks.forEach(function (callback: any) {
@@ -40,8 +40,8 @@ class KeyboardInputManager {
     }
 
     public listen(): void {
-        var self = this;
-        var map: any = {
+        let self = this;
+        let map: any = {
             38: 0, // Up
             39: 1, // Right
             40: 2, // Down
@@ -57,8 +57,8 @@ class KeyboardInputManager {
         };
 
         document.addEventListener("keydown", function (event: any) {
-            var modifiers = event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
-            var mapped = map[event.which];
+            let modifiers = event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
+            let mapped = map[event.which];
 
             if (!modifiers) {
                 if (mapped !== undefined) {
@@ -79,9 +79,9 @@ class KeyboardInputManager {
         this.bindButtonPress(".keep-playing-button", this.keepPlaying);
 
         // Respond to swipe events
-        var touchStartClientX: number;
-        var touchStartClientY: number;
-        var gameContainer: any = document.getElementsByClassName("game-container")[0];
+        let touchStartClientX: number;
+        let touchStartClientY: number;
+        let gameContainer: Element = document.getElementsByClassName("game-container")[0];
 
         gameContainer.addEventListener(this.eventTouchstart, function (event: any) {
             if ((!window.navigator.msPointerEnabled && event.touches.length > 1) || event.targetTouches.length > 1) {
@@ -108,8 +108,8 @@ class KeyboardInputManager {
                 return; // Ignore if still touching with one or more fingers
             }
 
-            var touchEndClientX: number;
-            var touchEndClientY: number;
+            let touchEndClientX: number;
+            let touchEndClientY: number;
 
             if (window.navigator.msPointerEnabled) {
            	    touchEndClientX = event.pageX;
@@ -119,11 +119,11 @@ class KeyboardInputManager {
                 touchEndClientY = event.changedTouches[0].clientY;
             }
 
-            var dx = touchEndClientX - touchStartClientX;
-            var absDx = Math.abs(dx);
+            let dx: number = touchEndClientX - touchStartClientX;
+            let absDx: number = Math.abs(dx);
 
-            var dy = touchEndClientY - touchStartClientY;
-            var absDy = Math.abs(dy);
+            let dy: number = touchEndClientY - touchStartClientY;
+            let absDy: number = Math.abs(dy);
 
             if (Math.max(absDx, absDy) > 10) {
                 // (right : left) : (down : up)
@@ -140,11 +140,12 @@ class KeyboardInputManager {
 
     public keepPlaying(event: any): void {
         event.preventDefault();
+        
         this.emit("keepPlaying");
     };
 
     public bindButtonPress(selector: string, fn: any): void {
-        var button = document.querySelector(selector);
+        let button: Element = document.querySelector(selector);
         
         button.addEventListener("click", fn.bind(this));
         button.addEventListener(this.eventTouchend, fn.bind(this));
