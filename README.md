@@ -4,3 +4,4 @@
 * Tile.ts -> ok
 * Grid.ts -> pass
 * KeyboardInputManager.ts -> TBA
+* HTMLActuator.ts -> TBA
