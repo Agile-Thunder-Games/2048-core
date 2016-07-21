@@ -18,6 +18,7 @@
         "Grid.ts",
         "KeyboardInputManager.ts",
 		"HTMLActuator.ts",
-        "LocalStorageManager.ts"
+        "LocalStorageManager.ts",
+        "GameManager.ts"
     ]
 }

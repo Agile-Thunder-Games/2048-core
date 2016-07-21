@@ -1,12 +1,12 @@
 class Tile {
     private position: Position;
-    private value: number;
+    public value: number;
     private previousPosition: any;
-    private x: number;
-    private y: number;
-    private mergedFrom: any;
+    public x: number;
+    public y: number;
+    public mergedFrom: any;
     
-    public constructor(position: Position, value: number) {
+    public constructor(position: any, value: number) {
         this.x = position.x;
         this.y = position.y;
         this.value = value || 2;

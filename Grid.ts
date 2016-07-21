@@ -1,6 +1,6 @@
 class Grid {
     private size: number;
-    private cells: any[];
+    public cells: any[];
     private previousState: any[];
 
     public constructor(size: number, previousState?: any[]) {
@@ -89,11 +89,11 @@ class Grid {
         }
     }
 
-    public insertTile(tile: Position): void {
+    public insertTile(tile: Tile): void {
          this.cells[tile.x][tile.y] = tile;
     }
 
-    public removeTile(tile: Position): void {
+    public removeTile(tile: Tile): void {
         this.cells[tile.x][tile.y] = null;
     }
 

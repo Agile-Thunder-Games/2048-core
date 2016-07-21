@@ -46,11 +46,11 @@ class LocalStorageManager {
         }
     }
 
-    public getBestScore(): string {
+    public getBestScore(): number {
         return this.storage.getItem(this.bestScoreKey) || 0;
     }
 
-    public setBestScore(score: number):void {
+    public setBestScore(score: number): void {
         this.storage.setItem(this.bestScoreKey, score);
     }
 
