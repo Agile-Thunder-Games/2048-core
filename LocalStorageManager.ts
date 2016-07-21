@@ -23,7 +23,7 @@ class LocalStorageManager {
     private gameStateKey: string;
     private storage: any;
     
-    constructor() {
+    public constructor() {
         this.bestScoreKey = "bestScore";
         this.gameStateKey = "gameState";
 
@@ -32,7 +32,7 @@ class LocalStorageManager {
         this.storage = supported ? window.localStorage : fakeStorage;
     }
 
-    localStorageSupported(): boolean {
+    private localStorageSupported(): boolean {
         var testKey = "test";
         var storage = window.localStorage;
 
@@ -46,25 +46,25 @@ class LocalStorageManager {
         }
     }
 
-    getBestScore(): string {
+    public getBestScore(): string {
         return this.storage.getItem(this.bestScoreKey) || 0;
     }
 
-    setBestScore(score: number):void {
+    public setBestScore(score: number):void {
         this.storage.setItem(this.bestScoreKey, score);
     }
 
-   getGameState() {
+    public getGameState(): any {
         var stateJSON = this.storage.getItem(this.gameStateKey);
 
         return stateJSON ? JSON.parse(stateJSON) : null;
     }
 
-    setGameState(gameState: any): void {
+    public setGameState(gameState: any): void {
         this.storage.setItem(this.gameStateKey, JSON.stringify(gameState));
     }
 
-    clearGameState(): void {
+    public clearGameState(): void {
         this.storage.removeItem(this.gameStateKey);
     }
 }
