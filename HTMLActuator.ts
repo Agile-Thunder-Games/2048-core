@@ -5,7 +5,7 @@ class HTMLActuator {
     private bestContainer: any;
     private messageContainer: any;
     
-    constructor() {
+    public constructor() {
         this.tileContainer = document.querySelector(".tile-container");
         this.scoreContainer = document.querySelector(".score-container");
         this.bestContainer = document.querySelector(".best-container");
@@ -14,7 +14,7 @@ class HTMLActuator {
         this.score = 0;
     }
 
-    actuate(grid: any, metadata: any): void {
+    public actuate(grid: any, metadata: any): void {
         var self = this;
 
         window.requestAnimationFrame(function () {
@@ -41,11 +41,11 @@ class HTMLActuator {
         });
     }
 
-    continueGame(): void {
+    public continueGame(): void {
         this.clearMessage();
     }
 
-    clearContainer(container: any) {
+    public clearContainer(container: HTMLElement): void {
         while (container.firstChild) {
             container.removeChild(container.firstChild);
         }
@@ -71,11 +71,16 @@ class HTMLActuator {
         if (tile.previousPosition) {
             // Make sure that the tile gets rendered in the previous position first
             window.requestAnimationFrame(function () {
-                classes[2] = self.positionClass({ x: tile.x, y: tile.y });
+                classes[2] = self.positionClass({ 
+                    x: tile.x, 
+                    y: tile.y
+                });
+
                 self.applyClasses(wrapper, classes); // Update the position
             });
         } else if (tile.mergedFrom) {
             classes.push("tile-merged");
+
             this.applyClasses(wrapper, classes);
 
             // Render the tiles that merged
@@ -84,6 +89,7 @@ class HTMLActuator {
             });
         } else {
             classes.push("tile-new");
+
             this.applyClasses(wrapper, classes);
         }
 
@@ -94,21 +100,24 @@ class HTMLActuator {
         this.tileContainer.appendChild(wrapper);
     }
 
-    applyClasses(element: any, classes: any): void {
+    public applyClasses(element: HTMLElement, classes: any): void {
         element.setAttribute("class", classes.join(" "));
     }
 
-    normalizePosition(position: Position): any {
-        return { x: position.x + 1, y: position.y + 1 };
+    public normalizePosition(position: Position): any {
+        return { 
+            x: position.x + 1, 
+            y: position.y + 1 
+        };
     }
 
-    positionClass(position: any): string {
+    public positionClass(position: any): string {
         position = this.normalizePosition(position);
         
         return "tile-position-" + position.x + "-" + position.y;
     }
 
-    updateScore(score: number): void {
+    public updateScore(score: number): void {
         this.clearContainer(this.scoreContainer);
 
         var difference = score - this.score;
@@ -126,11 +135,11 @@ class HTMLActuator {
         } 
     }
 
-    updateBestScore(bestScore: number): void {
+    public updateBestScore(bestScore: number): void {
         this.bestContainer.textContent = bestScore;
     }
 
-    message(won: boolean): void {
+    public message(won: boolean): void {
         var type = won ? "game-won" : "game-over";
         var message = won ? "You win!" : "Game over!";
 
@@ -138,7 +147,7 @@ class HTMLActuator {
         this.messageContainer.getElementsByTagName("p")[0].textContent = message;
     }
 
-    clearMessage(): void {
+    public clearMessage(): void {
         // IE only takes one value to remove at a time.
         this.messageContainer.classList.remove("game-won");
         this.messageContainer.classList.remove("game-over");
