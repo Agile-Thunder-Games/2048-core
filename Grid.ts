@@ -1,15 +1,15 @@
 class Grid {
-    private size: any;
+    private size: number;
     private cells: any[];
     private previousState: any[];
 
-    constructor(size: any, previousState: any[]) {
+    public constructor(size: number, previousState: any[]) {
         this.size = size;
         this.cells = previousState ? this.fromState(previousState) : this.empty();
     }
 
-    empty(): any[] {
-        var cells: any = [];
+    public empty(): number[] {
+        var cells: any[] = [];
 
         for (var x = 0; x < this.size; x++) {
             var row: any = cells[x] = [];
@@ -22,8 +22,8 @@ class Grid {
         return cells;
     }
 
-    fromState(state: any) {
-        var cells: any = [];
+    public fromState(state: any[]): number[] {
+        var cells: any[] = [];
 
         for (var x = 0; x < this.size; x++) {
             var row: any = cells[x] = [];
@@ -38,8 +38,7 @@ class Grid {
         return cells;
     }
 
-    // Find the first available random position
-    randomAvailableCell(): number {
+    public randomAvailableCell(): number {
         var cells = this.availableCells();
 
         if (cells.length) {
@@ -47,19 +46,22 @@ class Grid {
         }
     }
 
-    availableCells():any[] {
-        var cells: any = [];
+    public availableCells(): number[] {
+        var cells: any[] = [];
 
-        this.eachCell(function (_x: any, _y: any, tile: Tile) {
+        this.eachCell(function (x: number, y: number, tile: Tile) {
             if (!tile) {
-                cells.push({ x: _x, y: _y });
+                cells.push({
+                    x: x, 
+                    y: y 
+                });
             }
         });
 
         return cells;
     }
 
-    eachCell(callback: any): void {
+    public eachCell(callback: any): void {
         for (var x = 0; x < this.size; x++) {
             for (var y = 0; y < this.size; y++) {
                 callback(x, y, this.cells[x][y]);
@@ -67,19 +69,19 @@ class Grid {
         }
     }
 
-    cellsAvailable(): boolean {
+    public cellsAvailable(): boolean {
         return !!this.availableCells().length;
     }
 
-    cellAvailable(cell: any): boolean {
+    public cellAvailable(cell: any): boolean {
         return !this.cellOccupied(cell);
     }
     
-    cellOccupied(cell: any): boolean {
+    public cellOccupied(cell: any): boolean {
         return !!this.cellContent(cell);
     }
 
-    cellContent(cell: any): any {
+    public cellContent(cell: any): any {
         if (this.withinBounds(cell)) {
             return this.cells[cell.x][cell.y];
         } else {
@@ -87,20 +89,20 @@ class Grid {
         }
     }
 
-    insertTile(tile: Position):void {
+    public insertTile(tile: Position): void {
          this.cells[tile.x][tile.y] = tile;
     }
 
-    removeTile(tile: Position): void {
+    public removeTile(tile: Position): void {
         this.cells[tile.x][tile.y] = null;
     }
 
-    withinBounds(position: Position): boolean {
+    public withinBounds(position: Position): boolean {
         return position.x >= 0 && position.x < this.size && position.y >= 0 && position.y < this.size;
     }
 
-    serialize(): any {
-        var cellState: any = [];
+    public serialize(): any {
+        var cellState: any[] = [];
 
         for (var x = 0; x < this.size; x++) {
             var row : any = cellState[x] = [];
