@@ -5,4 +5,4 @@
 * Grid.ts -> ok
 * KeyboardInputManager.ts -> pass
 * HTMLActuator.ts -> pass
-
+* LocalStorageManager.ts -> TBA
