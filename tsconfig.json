@@ -13,6 +13,7 @@
         "wwwroot"
     ],
     "files": [
+        "Position.ts",
         "Tile.ts",
         "Grid.ts",
         "KeyboardInputManager.ts",

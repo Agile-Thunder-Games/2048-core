@@ -1,8 +1,3 @@
-interface Position {
-    x: number;
-    y: number;
-}
-
 class Tile {
     private position: Position;
     private value: number;
