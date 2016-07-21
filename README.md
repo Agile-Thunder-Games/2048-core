@@ -2,7 +2,7 @@
 
 ## Core build status
 * Tile.ts -> ok
-* Grid.ts -> pass
-* KeyboardInputManager.ts -> TBA
-* HTMLActuator.ts -> TBA
+* Grid.ts -> ok
+* KeyboardInputManager.ts -> pass
+* HTMLActuator.ts -> pass
 
