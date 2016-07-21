@@ -13,12 +13,12 @@
         "wwwroot"
     ],
     "files": [
-        "Position.ts",
-        "Tile.ts",
-        "Grid.ts",
-        "KeyboardInputManager.ts",
-		"HTMLActuator.ts",
-        "LocalStorageManager.ts",
-        "GameManager.ts"
+        "src/Position.ts",
+        "src/Tile.ts",
+        "src/Grid.ts",
+        "src/KeyboardInputManager.ts",
+		"src/HTMLActuator.ts",
+        "src/LocalStorageManager.ts",
+        "src/GameManager.ts"
     ]
 }
