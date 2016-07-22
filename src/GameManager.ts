@@ -6,7 +6,7 @@ class GameManager {
     private startTiles: number;
     private over: boolean;
     private won: boolean;
-    private _keepPlaying: boolean;
+    private isPlaying: boolean;
     private grid: Grid;
     private score: number;
 
@@ -32,13 +32,13 @@ class GameManager {
     }
 
     public keepPlaying() {
-        this._keepPlaying = true;
+        this.isPlaying = true;
         this.actuator.continueGame(); // Clear the game won/lost message
     }
 
     // Return true if the game is lost, or has won and the user hasn't kept playing
     public isGameTerminated() {
-        return this.over || (this.won && !this._keepPlaying);
+        return this.over || (this.won && !this.isPlaying);
     }
 
     public setup() {
@@ -55,7 +55,7 @@ class GameManager {
             this.score = 0;
             this.over = false;
             this.won = false;
-            this._keepPlaying = false;
+            this.isPlaying = false;
             this.addStartTiles();
         }
 
@@ -63,7 +63,7 @@ class GameManager {
     }
 
     public addStartTiles(): void {
-        for (let i = 0; i < this.startTiles; i++) {
+        for (let i: number = 0; i < this.startTiles; i++) {
             this.addRandomTile();
         }
     }
@@ -132,9 +132,9 @@ class GameManager {
         let cell: Point;
         var tile: Tile;
 
-        var vector: GameManager = this.getVector(direction);
-        var traversals: any = this.buildTraversals(vector);
-        var moved: boolean = false;
+        let vector: Point = this.getVector(direction);
+        let traversals: any = this.buildTraversals(vector);
+        let moved: boolean = false;
 
         // Save the current tile positions and remove merger information
         this.prepareTiles();
@@ -198,10 +198,13 @@ class GameManager {
         return map[direction];
     }
 
-   public buildTraversals(vector: any): any {
-        let traversals: any = { x: [], y: [] };
+   public buildTraversals(vector: Point): Object {
+        let traversals: any = { 
+            x: [], 
+            y: [] 
+        };
 
-        for (let pos = 0; pos < this.size; pos++) {
+        for (let pos: number = 0; pos < this.size; pos++) {
             traversals.x.push(pos);
             traversals.y.push(pos);
         }
@@ -213,8 +216,8 @@ class GameManager {
         return traversals;
     }
 
-    public findFarthestPosition(cell: Point, vector: any): any {
-        var previous: any;
+    public findFarthestPosition(cell: Point, vector: Point): Object {
+        let previous: any;
 
         do {
             previous = cell;
@@ -235,16 +238,16 @@ class GameManager {
     };
 
     public tileMatchesAvailable(): boolean {
-        let self = this;
+        let self: GameManager = this;
         let tile: Tile;
 
-        for (let x = 0; x < this.size; x++) {
-            for (let y = 0; y < this.size; y++) {
+        for (let x: number = 0; x < this.size; x++) {
+            for (let y: number = 0; y < this.size; y++) {
                 tile = this.grid.cellContent({ x: x, y: y });
 
                 if (tile) {
                     for (let direction = 0; direction < 4; direction++) {
-                        let vector = self.getVector(direction);
+                        let vector: Point = self.getVector(direction);
                         let cell: Point  = { 
                             x: x + vector.x, 
                             y: y + vector.y
@@ -263,8 +266,7 @@ class GameManager {
         return false;
     }
 
-    // todo use Point inteface
-    public positionsEqual(first: any, second: any): boolean {
+    public positionsEqual(first: Point, second: Point): boolean {
         return first.x === second.x && first.y === second.y;
-    };
+    }
 }
