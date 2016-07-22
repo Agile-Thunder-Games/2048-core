@@ -15,7 +15,7 @@ class HTMLActuator {
     }
 
     public actuate(grid: Grid, metadata: any): void {
-        let self = this;
+        let self: HTMLActuator = this;
 
         window.requestAnimationFrame(function () {
             self.clearContainer(self.tileContainer);
@@ -52,7 +52,7 @@ class HTMLActuator {
     }
 
     public addTile(tile: any): void {
-        let self = this;
+        let self: HTMLActuator = this;
 
         let wrapper: HTMLDivElement = document.createElement("div");
         let inner: HTMLDivElement = document.createElement("div");
@@ -82,7 +82,7 @@ class HTMLActuator {
 
             this.applyClasses(wrapper, classes);
 
-            tile.mergedFrom.forEach(function (merged: any) {
+            tile.mergedFrom.forEach(function (merged: Tile) {
                 self.addTile(merged);
             });
         } else {
@@ -116,13 +116,13 @@ class HTMLActuator {
     public updateScore(score: number): void {
         this.clearContainer(this.scoreContainer);
 
-        let difference = score - this.score;
+        let difference: number = score - this.score;
         
         this.score = score;
         this.scoreContainer.textContent = this.score;
 
         if (difference > 0) {
-            var addition = document.createElement("div");
+            let addition: HTMLDivElement = document.createElement("div");
             
             addition.classList.add("score-addition");
             addition.textContent = "+" + difference;

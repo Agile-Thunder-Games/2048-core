@@ -123,14 +123,14 @@ class GameManager {
         tile.updatePosition(cell);
     }
 
-    public move(direction: number) {
+    public move(direction: number): void {
         // 0: up, 1: right, 2: down, 3: left
-        let self = this;
+        let self: GameManager = this;
 
         if (this.isGameTerminated()) return; // Don't do anything if the game's over
 
         let cell: Point;
-        var tile: Tile;
+        let tile: Tile;
 
         let vector: Point = this.getVector(direction);
         let traversals: any = this.buildTraversals(vector);
@@ -150,7 +150,7 @@ class GameManager {
 
                 if (tile) {
                     let positions: any = self.findFarthestPosition(cell, vector);
-                    let next: any = self.grid.cellContent(positions.next);
+                    let next: Tile = self.grid.cellContent(positions.next);
 
                     // Only one merger per row traversal?
                     if (next && next.value === tile.value && !next.mergedFrom) {
@@ -217,7 +217,7 @@ class GameManager {
     }
 
     public findFarthestPosition(cell: Point, vector: Point): Object {
-        let previous: any;
+        let previous: Point;
 
         do {
             previous = cell;
@@ -243,10 +243,13 @@ class GameManager {
 
         for (let x: number = 0; x < this.size; x++) {
             for (let y: number = 0; y < this.size; y++) {
-                tile = this.grid.cellContent({ x: x, y: y });
+                tile = this.grid.cellContent({ 
+                    x: x, 
+                    y: y 
+                });
 
                 if (tile) {
-                    for (let direction = 0; direction < 4; direction++) {
+                    for (let direction: number = 0; direction < 4; direction++) {
                         let vector: Point = self.getVector(direction);
                         let cell: Point  = { 
                             x: x + vector.x, 

@@ -1,3 +1,6 @@
+/*
+    Todo remoe this
+*/
 var fakeStorage: any = {
     _data: {},
     setItem: function (id: number, val: string): string {
@@ -12,7 +15,7 @@ var fakeStorage: any = {
     clear: function (): any {
         return this._data = {};
     }
-};
+}; 
 
 class LocalStorageManager {
     private bestScoreKey: string;

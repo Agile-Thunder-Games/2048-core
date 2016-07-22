@@ -1,9 +1,9 @@
 class Grid {
     public size: number;
     public cells: any[];
-    public previousState: any[];
+    public previousState: number[];
 
-    public constructor(size: number, previousState?: any[]) {
+    public constructor(size: number, previousState?: number[]) {
         this.size = size;
         this.cells = previousState ? this.fromState(previousState) : this.empty();
     }
@@ -11,10 +11,10 @@ class Grid {
     public empty(): number[] {
         let cells: any[] = [];
 
-        for (let x = 0; x < this.size; x++) {
-            let row: any = cells[x] = [];
+        for (let x: number = 0; x < this.size; x++) {
+            let row: number[] = cells[x] = [];
 
-            for (let y = 0; y < this.size; y++) {
+            for (let y: number = 0; y < this.size; y++) {
                 row.push(null);
             }
         }
@@ -26,7 +26,7 @@ class Grid {
         let cells: any[] = [];
 
         for (let x = 0; x < this.size; x++) {
-            let row: any = cells[x] = [];
+            let row: any[] = cells[x] = [];
 
             for (let y = 0; y < this.size; y++) {
                 let tile: Tile = state[x][y];
@@ -53,7 +53,7 @@ class Grid {
             if (!tile) {
                 cells.push({
                     x: x, 
-                    y: y 
+                    y: y
                 });
             }
         });
@@ -62,8 +62,8 @@ class Grid {
     }
 
     public eachCell(callback: any): void {
-        for (let x = 0; x < this.size; x++) {
-            for (let y = 0; y < this.size; y++) {
+        for (let x: number = 0; x < this.size; x++) {
+            for (let y: number = 0; y < this.size; y++) {
                 callback(x, y, this.cells[x][y]);
             }
         }
@@ -73,15 +73,15 @@ class Grid {
         return !!this.availableCells().length;
     }
 
-    public cellAvailable(cell: any): boolean {
+    public cellAvailable(cell: Point): boolean {
         return !this.cellOccupied(cell);
     }
     
-    public cellOccupied(cell: any): boolean {
+    public cellOccupied(cell: Point): boolean {
         return !!this.cellContent(cell);
     }
 
-    public cellContent(cell: any): any {
+    public cellContent(cell: Point): Tile {
         if (this.withinBounds(cell)) {
             return this.cells[cell.x][cell.y];
         } else {
@@ -101,13 +101,13 @@ class Grid {
         return position.x >= 0 && position.x < this.size && position.y >= 0 && position.y < this.size;
     }
 
-    public serialize(): any {
-        let cellState: any[] = [];
+    public serialize(): Object {
+        let cellState: Object[] = [];
 
-        for (let x = 0; x < this.size; x++) {
-            let row : any = cellState[x] = [];
+        for (let x: number = 0; x < this.size; x++) {
+            let row : any[] = cellState[x] = [];
 
-            for (let y = 0; y < this.size; y++) {
+            for (let y: number = 0; y < this.size; y++) {
                 row.push(this.cells[x][y] ? this.cells[x][y].serialize() : null);
             }
         }

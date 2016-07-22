@@ -40,7 +40,7 @@ class KeyboardInputManager {
     }
 
     public listen(): void {
-        let self = this;
+        let self: KeyboardInputManager = this;
         let map: any = {
             38: 0, // Up
             39: 1, // Right
@@ -57,8 +57,8 @@ class KeyboardInputManager {
         };
 
         document.addEventListener("keydown", function (event: any) {
-            let modifiers = event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
-            let mapped = map[event.which];
+            let modifiers: boolean = event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
+            let mapped: any = map[event.which];
 
             if (!modifiers) {
                 if (mapped !== undefined) {
