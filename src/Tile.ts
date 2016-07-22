@@ -1,7 +1,7 @@
 class Tile {
     public position: Point;
     public value: number;
-    public previousPosition: any;
+    public previousPosition: Point;
     public x: number;
     public y: number;
     public mergedFrom: any;
