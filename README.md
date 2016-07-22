@@ -9,4 +9,4 @@
 * KeyboardInputManager.ts -> ok
 * HTMLActuator.ts -> ok
 * LocalStorageManager.ts -> ok
-* GameManager.ts -> pass
+* GameManager.ts -> оk
