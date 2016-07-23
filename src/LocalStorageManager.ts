@@ -1,5 +1,5 @@
 /*
-    Todo remoe this
+    Todo remove
 */
 var fakeStorage: any = {
     _data: {},

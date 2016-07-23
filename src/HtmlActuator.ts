@@ -51,8 +51,7 @@ class HtmlActuator {
         }
     }
 
-    // TODO
-    public addTile(tile: any): void {
+    public addTile(tile: Tile): void {
         let self: HtmlActuator = this;
 
         let wrapper: HTMLDivElement = document.createElement("div");
@@ -67,7 +66,7 @@ class HtmlActuator {
         this.applyClasses(wrapper, classes);
 
         inner.classList.add("tile-inner");
-        inner.textContent = tile.value;
+        inner.textContent = tile.value.toString();
 
         if (tile.previousPosition) {
             window.requestAnimationFrame(function () {
