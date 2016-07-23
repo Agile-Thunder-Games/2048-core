@@ -1,7 +1,7 @@
 class Grid {
-    public size: number;
-    public cells: any[];
-    public previousState: number[];
+    private _size: number;
+    private _cells: any[];
+    private _previousState: number[];
 
     public constructor(size: number, previousState?: number[]) {
         this.size = size;
@@ -116,5 +116,32 @@ class Grid {
             size: this.size,
             cells: cellState
         };
+    }
+
+    /*
+        Getters and setters
+    */
+    public get size() : number {
+        return this._size;
+    }
+    
+    public set size(size : number) {
+        this._size = size;
+    }
+
+    public get cells(): any[] {
+        return this._cells;
+    }
+    
+    public set cells(cells: any[]) {
+        this._cells = cells;
+    }
+
+    public get previousState() : number[] {
+        return this._previousState;
+    }
+    
+    public set previousState(state: number[]) {
+        this._previousState = state;
     }
 }
