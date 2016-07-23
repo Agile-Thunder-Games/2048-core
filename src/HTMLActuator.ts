@@ -1,4 +1,4 @@
-class HTMLActuator {
+class HtmlActuator {
     private score: number;
     private tileContainer: any;
     private scoreContainer: any;
@@ -15,7 +15,7 @@ class HTMLActuator {
     }
 
     public actuate(grid: Grid, metadata: any): void {
-        let self: HTMLActuator = this;
+        let self: HtmlActuator = this;
 
         window.requestAnimationFrame(function () {
             self.clearContainer(self.tileContainer);
@@ -51,8 +51,9 @@ class HTMLActuator {
         }
     }
 
+    // TODO
     public addTile(tile: any): void {
-        let self: HTMLActuator = this;
+        let self: HtmlActuator = this;
 
         let wrapper: HTMLDivElement = document.createElement("div");
         let inner: HTMLDivElement = document.createElement("div");

@@ -2,7 +2,7 @@ class Game {
     private size: number;
     private inputManager: KeyboardInputManager;
     private storageManager: LocalStorageManager;
-    private actuator: HTMLActuator;
+    private actuator: HtmlActuator;
     private startTiles: number;
     private over: boolean;
     private won: boolean;

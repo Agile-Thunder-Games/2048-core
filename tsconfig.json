@@ -17,7 +17,7 @@
         "src/Tile.ts",
         "src/Grid.ts",
         "src/KeyboardInputManager.ts",
-		"src/HTMLActuator.ts",
+		"src/HtmlActuator.ts",
         "src/LocalStorageManager.ts",
         "src/Game.ts"
     ]
