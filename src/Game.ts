@@ -25,23 +25,23 @@ class Game {
         this.setup();
     }
 
-    public restart() {
+    public restart(): void {
         this.storageManager.clearGameState();
         this.actuator.continueGame(); // Clear the game won/lost message
         this.setup();
     }
 
-    public keepPlaying() {
+    public keepPlaying(): void {
         this.isPlaying = true;
         this.actuator.continueGame(); // Clear the game won/lost message
     }
 
     // Return true if the game is lost, or has won and the user hasn't kept playing
-    public isGameTerminated() {
+    public isGameTerminated(): boolean {
         return this.over || (this.won && !this.isPlaying);
     }
 
-    public setup() {
+    public setup(): void {
         let previousState: any = this.storageManager.getGameState();
 
         if (previousState) {
