@@ -1,22 +1,3 @@
-/*
-    Todo remove
-*/
-/*var fakeStorage: any = {
-    _data: {},
-    setItem: function (id: number, val: string): string {
-        return this._data[id] = String(val);
-    },
-    getItem: function (id: number): any {
-        return this._data.hasOwnProperty(id) ? this._data[id] : undefined;
-    },
-    removeItem: function (id: number): boolean {
-        return delete this._data[id];
-    },
-    clear: function (): any {
-        return this._data = {};
-    }
-};*/
-
 class LocalStorageManager {
     private bestScoreKey: string;
     private gameStateKey: string;
@@ -25,26 +6,8 @@ class LocalStorageManager {
     public constructor() {
         this.bestScoreKey = "bestScore";
         this.gameStateKey = "gameState";
-
-        //let supported: boolean = this.localStorageSupported();
-        
-        //this.storage = supported ? window.localStorage : fakeStorage;
         this.storage = window.localStorage;
     }
-
-    /*private localStorageSupported(): boolean {
-        let testKey: string = "test";
-        let storage: Storage = window.localStorage;
-
-        try {
-            storage.setItem(testKey, "1");
-            storage.removeItem(testKey);
-            
-            return true;
-        } catch (error) {
-            return false;
-        }
-    }*/
 
     public getBestScore(): number {
         return this.storage.getItem(this.bestScoreKey) || 0;
