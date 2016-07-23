@@ -15,7 +15,6 @@ class Game {
         this.inputManager = new InputManager;
         this.storageManager = new StorageManager;
         this.actuator = new Actuator;
-
         this.startTiles  = 2;
 
         this.inputManager.on("move", this.move.bind(this));
@@ -42,7 +41,7 @@ class Game {
     }
 
     public setup(): void {
-        let previousState: any = this.storageManager.getGameState();
+        let previousState: Game = this.storageManager.getGameState();
 
         if (previousState) {
             this.grid = new Grid(previousState.grid.size, previousState.grid.cells);
@@ -108,7 +107,7 @@ class Game {
     }
 
     public prepareTiles(): void {
-        this.grid.eachCell(function (x: number, y: number, tile: Tile) {
+        this.grid.eachCell( (x: number, y: number, tile: Tile) => {
             if (tile) {
                 tile.mergedFrom = null;
                 tile.savePosition();
@@ -140,8 +139,8 @@ class Game {
         this.prepareTiles();
 
         // Traverse the grid in the right direction and move tiles
-        traversals.x.forEach(function (x: number) {
-            traversals.y.forEach(function (y: number) {
+        traversals.x.forEach((x: number) => {
+            traversals.y.forEach((y: number) => {
                 cell = { 
                     x: x, 
                     y: y
