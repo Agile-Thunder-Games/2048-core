@@ -41,7 +41,7 @@ class Game {
     }
 
     public setup(): void {
-        let previousState: Game = this.storageManager.getGameState();
+        let previousState: Game = this.storageManager.gameState;
 
         if (previousState) {
             this.grid = new Grid(previousState.grid.size, previousState.grid.cells);
@@ -77,21 +77,21 @@ class Game {
     }
 
     public actuate(): void {
-        if (this.storageManager.getBestScore() < this.score) {
-            this.storageManager.setBestScore(this.score);
+        if (this.storageManager.bestScore < this.score) {
+            this.storageManager.bestScore = this.score;
         }
 
         if (this.over) {
             this.storageManager.clearGameState();
         } else {
-            this.storageManager.setGameState(this.serialize());
+            this.storageManager.gameState = this.serialize();
         }
 
         this.actuator.actuate(this.grid, {
             score: this.score,
             over: this.over,
             won: this.won,
-            bestScore: this.storageManager.getBestScore(),
+            bestScore: this.storageManager.bestScore,
             terminated: this.isGameTerminated()
         });
     }
