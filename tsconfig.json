@@ -19,6 +19,6 @@
         "src/KeyboardInputManager.ts",
 		"src/HTMLActuator.ts",
         "src/LocalStorageManager.ts",
-        "src/GameManager.ts"
+        "src/Game.ts"
     ]
 }

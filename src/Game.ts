@@ -1,4 +1,4 @@
-class GameManager {
+class Game {
     private size: number;
     private inputManager: KeyboardInputManager;
     private storageManager: LocalStorageManager;
@@ -125,7 +125,7 @@ class GameManager {
 
     public move(direction: number): void {
         // 0: up, 1: right, 2: down, 3: left
-        let self: GameManager = this;
+        let self: Game = this;
 
         if (this.isGameTerminated()) return; // Don't do anything if the game's over
 
@@ -238,7 +238,7 @@ class GameManager {
     };
 
     public tileMatchesAvailable(): boolean {
-        let self: GameManager = this;
+        let self: Game = this;
         let tile: Tile;
 
         for (let x: number = 0; x < this.size; x++) {
