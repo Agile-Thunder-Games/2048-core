@@ -4,7 +4,7 @@ class Tile {
     public previousPosition: Point;
     public x: number;
     public y: number;
-    public mergedFrom: any;
+    public mergedFrom: Tile[];
     
     public constructor(position: Point, value: number) {
         this.x = position.x;

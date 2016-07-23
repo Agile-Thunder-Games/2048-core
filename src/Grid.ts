@@ -47,9 +47,9 @@ class Grid {
     }
 
     public availableCells(): Point[] {
-        let cells: any[] = [];
+        let cells: Point[] = [];
 
-        this.eachCell(function (x: number, y: number, tile: Tile) {
+        this.eachCell((x: number, y: number, tile: Tile) => {
             if (!tile) {
                 cells.push({
                     x: x, 

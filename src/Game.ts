@@ -215,7 +215,7 @@ class Game {
         return traversals;
     }
 
-    public findFarthestPosition(cell: Point, vector: Point): Object {
+    public findFarthestPosition(cell: Point, vector: Point): any {
         let previous: Point;
 
         do {

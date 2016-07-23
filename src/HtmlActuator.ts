@@ -17,11 +17,11 @@ class HtmlActuator {
     public actuate(grid: Grid, metadata: any): void {
         let self: HtmlActuator = this;
 
-        window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(() => {
             self.clearContainer(self.tileContainer);
 
-            grid.cells.forEach(function (column: Tile[]) {
-                column.forEach(function (cell: Tile) {
+            grid.cells.forEach((column: Tile[]) => {
+                column.forEach((cell: Tile) => {
                     if (cell) {
                         self.addTile(cell);
                     }
@@ -69,7 +69,7 @@ class HtmlActuator {
         inner.textContent = tile.value.toString();
 
         if (tile.previousPosition) {
-            window.requestAnimationFrame(function () {
+            window.requestAnimationFrame(() => {
                 classes[2] = self.positionClass({ 
                     x: tile.x, 
                     y: tile.y
@@ -82,7 +82,7 @@ class HtmlActuator {
 
             this.applyClasses(wrapper, classes);
 
-            tile.mergedFrom.forEach(function (merged: Tile) {
+            tile.mergedFrom.forEach((merged: Tile) => {
                 self.addTile(merged);
             });
         } else {
@@ -121,14 +121,14 @@ class HtmlActuator {
         this.score = score;
         this.scoreContainer.textContent = this.score;
 
-        if (difference > 0) {
+       /* if (difference > 0) {
             let addition: HTMLDivElement = document.createElement("div");
             
             addition.classList.add("score-addition");
             addition.textContent = "+" + difference;
 
             this.scoreContainer.appendChild(addition);
-        } 
+        } */
     }
 
     public updateBestScore(bestScore: number): void {

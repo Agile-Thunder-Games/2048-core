@@ -33,7 +33,7 @@ class KeyboardInputManager {
         let callbacks = this.events[event];
             
         if (callbacks) {
-            callbacks.forEach(function (callback: any) {
+            callbacks.forEach((callback: any) => {
                 callback(data);
             });
         }
@@ -56,7 +56,7 @@ class KeyboardInputManager {
             65: 3  // A
         };
 
-        document.addEventListener("keydown", function (event: any) {
+        document.addEventListener("keydown", (event: any) => {
             let modifiers: boolean = event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
             let mapped: any = map[event.which];
 
@@ -83,7 +83,7 @@ class KeyboardInputManager {
         let touchStartClientY: number;
         let gameContainer: Element = document.getElementsByClassName("game-container")[0];
 
-        gameContainer.addEventListener(this.eventTouchstart, function (event: any) {
+        gameContainer.addEventListener(this.eventTouchstart, (event: any) => {
             if ((!window.navigator.msPointerEnabled && event.touches.length > 1) || event.targetTouches.length > 1) {
                 return; // Ignore if touching with more than 1 finger
             }
@@ -99,11 +99,11 @@ class KeyboardInputManager {
             event.preventDefault();
         });
 
-        gameContainer.addEventListener(this.eventTouchmove, function (event: any) {
+        gameContainer.addEventListener(this.eventTouchmove, (event: any) => {
             event.preventDefault();
         });
 
-        gameContainer.addEventListener(this.eventTouchend, function (event: any) {
+        gameContainer.addEventListener(this.eventTouchend, (event: any) => {
             if ((!window.navigator.msPointerEnabled && event.touches.length > 0) || event.targetTouches.length > 0) {
                 return; // Ignore if still touching with one or more fingers
             }
