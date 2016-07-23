@@ -1,7 +1,7 @@
 /*
     Todo remove
 */
-var fakeStorage: any = {
+/*var fakeStorage: any = {
     _data: {},
     setItem: function (id: number, val: string): string {
         return this._data[id] = String(val);
@@ -15,23 +15,24 @@ var fakeStorage: any = {
     clear: function (): any {
         return this._data = {};
     }
-}; 
+};*/
 
 class LocalStorageManager {
     private bestScoreKey: string;
     private gameStateKey: string;
-    private storage: any;
+    private storage: Storage;
     
     public constructor() {
         this.bestScoreKey = "bestScore";
         this.gameStateKey = "gameState";
 
-        let supported: boolean = this.localStorageSupported();
+        //let supported: boolean = this.localStorageSupported();
         
-        this.storage = supported ? window.localStorage : fakeStorage;
+        //this.storage = supported ? window.localStorage : fakeStorage;
+        this.storage = window.localStorage;
     }
 
-    private localStorageSupported(): boolean {
+    /*private localStorageSupported(): boolean {
         let testKey: string = "test";
         let storage: Storage = window.localStorage;
 
@@ -43,14 +44,14 @@ class LocalStorageManager {
         } catch (error) {
             return false;
         }
-    }
+    }*/
 
     public getBestScore(): number {
         return this.storage.getItem(this.bestScoreKey) || 0;
     }
 
     public setBestScore(score: number): void {
-        this.storage.setItem(this.bestScoreKey, score);
+        this.storage.setItem(this.bestScoreKey, score.toString());
     }
 
     public getGameState(): any {
