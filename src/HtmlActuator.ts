@@ -120,15 +120,6 @@ class HtmlActuator {
         
         this.score = score;
         this.scoreContainer.textContent = this.score;
-
-       /* if (difference > 0) {
-            let addition: HTMLDivElement = document.createElement("div");
-            
-            addition.classList.add("score-addition");
-            addition.textContent = "+" + difference;
-
-            this.scoreContainer.appendChild(addition);
-        } */
     }
 
     public updateBestScore(bestScore: number): void {
