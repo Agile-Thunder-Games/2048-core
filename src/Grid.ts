@@ -25,10 +25,10 @@ class Grid {
     public fromState(state: any[]): number[] {
         let cells: any[] = [];
 
-        for (let x = 0; x < this.size; x++) {
+        for (let x: number = 0; x < this.size; x++) {
             let row: any[] = cells[x] = [];
 
-            for (let y = 0; y < this.size; y++) {
+            for (let y: number = 0; y < this.size; y++) {
                 let tile: Tile = state[x][y];
                 
                 row.push(tile ? new Tile(tile.position, tile.value) : null);

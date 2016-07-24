@@ -195,7 +195,7 @@ class Game {
         };
 
         return map[direction];
-    }
+    }    
 
    public buildTraversals(vector: Point): Object {
         let traversals: any = { 
@@ -255,7 +255,7 @@ class Game {
                             y: y + vector.y
                         };
 
-                        let other: any = self.grid.cellContent(cell);
+                        let other: Tile = self.grid.cellContent(cell);
 
                         if (other && other.value === tile.value) {
                             return true;
