@@ -10,7 +10,8 @@
         "charset": "utf-8",
         "declaration": false,
         "diagnostics": true,
-        "listFiles": true
+        "listFiles": false,
+        "moduleResolution": "classic"
     },
     "exclude": [
         "node_modules"

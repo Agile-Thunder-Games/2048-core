@@ -125,23 +125,23 @@ class Grid {
         return this._size;
     }
     
-    public set size(size : number) {
-        this._size = size;
+    public set size(value : number) {
+        this._size = value;
     }
 
     public get cells(): any[] {
         return this._cells;
     }
     
-    public set cells(cells: any[]) {
-        this._cells = cells;
+    public set cells(value : any[]) {
+        this._cells = value;
     }
 
     public get previousState() : number[] {
         return this._previousState;
     }
     
-    public set previousState(state: number[]) {
-        this._previousState = state;
+    public set previousState(value : number[]) {
+        this._previousState = value;
     }
 }

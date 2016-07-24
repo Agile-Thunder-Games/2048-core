@@ -43,47 +43,47 @@ class Tile {
         return this._position;
     }
     
-    public set position(p : IPosition) {
-        this._position = p;
+    public set position(value : IPosition) {
+        this._position = value;
     }
 
     public get value() : number {
         return this._value;
     }
 
-    public set value(v : number) {
-        this._value = v;
+    public set value(value : number) {
+        this._value = value;
     }
     
     public get previousPosition() : IPosition {
         return this._previousPosition;
     }
 
-    public set previousPosition(p : IPosition) {
-        this._previousPosition = p;
+    public set previousPosition(value : IPosition) {
+        this._previousPosition = value;
     }
 
     public get x() : number {
         return this._x;
     }
     
-    public set x(x : number) {
-        this._x = x;
+    public set x(value : number) {
+        this._x = value;
     }
     
     public get y() : number {
         return this._y;
     }
     
-    public set y(y : number) {
-        this._y = y;
+    public set y(value : number) {
+        this._y = value;
     }
 
     public get mergedFrom() : Tile[] {
         return this._mergedFrom;
     }
     
-    public set mergedFrom(m : Tile[]) {
-        this._mergedFrom = m;
+    public set mergedFrom(value : Tile[]) {
+        this._mergedFrom = value;
     }
 }
