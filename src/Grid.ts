@@ -101,8 +101,8 @@ class Grid {
         return position.x >= 0 && position.x < this.size && position.y >= 0 && position.y < this.size;
     }
 
-    public serialize(): Object {
-        let cellState: Object[] = [];
+    public serialize(): any {
+        let cellState: any[] = [];
 
         for (let x: number = 0; x < this.size; x++) {
             let row : any[] = cellState[x] = [];
