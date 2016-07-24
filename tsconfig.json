@@ -14,6 +14,7 @@
     ],
     "files": [
         "src/IPosition.ts",
+        "src/ITraversal.ts",
         "src/Tile.ts",
         "src/Grid.ts",
         "src/KeyboardInputManager.ts",

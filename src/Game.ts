@@ -132,7 +132,7 @@ class Game {
         let tile: Tile;
 
         let vector: IPosition = this.getVector(direction);
-        let traversals: any = this.buildTraversals(vector);
+        let traversals: ITraversal = this.buildTraversals(vector);
         let moved: boolean = false;
 
         // Save the current tile positions and remove merger information
@@ -197,8 +197,8 @@ class Game {
         return map[direction];
     }    
 
-   public buildTraversals(vector: IPosition): Object {
-        let traversals: any = { 
+   public buildTraversals(vector: IPosition): ITraversal {
+        let traversals: ITraversal = { 
             x: [], 
             y: [] 
         };
