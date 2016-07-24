@@ -39,7 +39,7 @@ class Grid {
     }
 
     public randomAvailableCell(): IPosition {
-        let cells: IPosition[] = this.availableCells(); //todo
+        let cells: IPosition[] = this.availableCells();
 
         if (cells.length) {
             return cells[Math.floor(Math.random() * cells.length)];

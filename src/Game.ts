@@ -146,8 +146,7 @@ class Game {
                     y: y
                 };
                 tile = self.grid.cellContent(cell);
-
-                // Todo
+                
                 if (tile) {
                     let positions: any = self.findFarthestPosition(cell, vector);
                     let next: Tile = self.grid.cellContent(positions.next);
