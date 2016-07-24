@@ -1,12 +1,12 @@
 class Tile {
-    private _position: Point;
+    private _position: IPosition;
     private _value: number;
-    private _previousPosition: Point;
+    private _previousPosition: IPosition;
     private _x: number;
     private _y: number;
     private _mergedFrom: Tile[];
     
-    public constructor(position: Point, value: number) {
+    public constructor(position: IPosition, value: number) {
         this.x = position.x;
         this.y = position.y;
         this.value = value || 2;
@@ -21,7 +21,7 @@ class Tile {
         };
     }
 
-    public updatePosition(position: Point): void {
+    public updatePosition(position: IPosition): void {
         this.x = position.x;
         this.y = position.y;
     }
@@ -39,11 +39,11 @@ class Tile {
     /*
         Getters and setters
     */
-    public get position() : Point {
+    public get position() : IPosition {
         return this._position;
     }
     
-    public set position(p : Point) {
+    public set position(p : IPosition) {
         this._position = p;
     }
 
@@ -55,11 +55,11 @@ class Tile {
         this._value = v;
     }
     
-    public get previousPosition() : Point {
+    public get previousPosition() : IPosition {
         return this._previousPosition;
     }
 
-    public set previousPosition(p : Point) {
+    public set previousPosition(p : IPosition) {
         this._previousPosition = p;
     }
 

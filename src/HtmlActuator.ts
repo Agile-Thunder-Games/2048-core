@@ -56,7 +56,7 @@ class HtmlActuator {
 
         let wrapper: HTMLDivElement = document.createElement("div");
         let inner: HTMLDivElement = document.createElement("div");
-        let position : Point = tile.previousPosition || { x: tile.x, y: tile.y };
+        let position : IPosition = tile.previousPosition || { x: tile.x, y: tile.y };
         let positionClass: string = this.positionClass(position);
 
         let classes: string[] = ["tile", "tile-" + tile.value, positionClass];
@@ -100,14 +100,14 @@ class HtmlActuator {
         element.setAttribute("class", classes.join(" "));
     }
 
-    public normalizePosition(position: Point): Point {
+    public normalizePosition(position: IPosition): IPosition {
         return { 
             x: position.x + 1, 
             y: position.y + 1
         };
     }
 
-    public positionClass(position: Point): string {
+    public positionClass(position: IPosition): string {
         position = this.normalizePosition(position);
         
         return "tile-position-" + position.x + "-" + position.y;

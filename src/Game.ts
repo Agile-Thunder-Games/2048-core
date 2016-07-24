@@ -115,7 +115,7 @@ class Game {
         });
     }
 
-    public moveTile(tile: Tile, cell: Point): void {
+    public moveTile(tile: Tile, cell: IPosition): void {
         this.grid.cells[tile.x][tile.y] = null;
         this.grid.cells[cell.x][cell.y] = tile;
   
@@ -128,10 +128,10 @@ class Game {
 
         if (this.isGameTerminated()) return; // Don't do anything if the game's over
 
-        let cell: Point;
+        let cell: IPosition;
         let tile: Tile;
 
-        let vector: Point = this.getVector(direction);
+        let vector: IPosition = this.getVector(direction);
         let traversals: any = this.buildTraversals(vector);
         let moved: boolean = false;
 
@@ -147,6 +147,7 @@ class Game {
                 };
                 tile = self.grid.cellContent(cell);
 
+                // Todo
                 if (tile) {
                     let positions: any = self.findFarthestPosition(cell, vector);
                     let next: Tile = self.grid.cellContent(positions.next);
@@ -197,7 +198,7 @@ class Game {
         return map[direction];
     }    
 
-   public buildTraversals(vector: Point): Object {
+   public buildTraversals(vector: IPosition): Object {
         let traversals: any = { 
             x: [], 
             y: [] 
@@ -215,8 +216,8 @@ class Game {
         return traversals;
     }
 
-    public findFarthestPosition(cell: Point, vector: Point): any {
-        let previous: Point;
+    public findFarthestPosition(cell: IPosition, vector: IPosition): any {
+        let previous: IPosition;
 
         do {
             previous = cell;
@@ -249,8 +250,8 @@ class Game {
 
                 if (tile) {
                     for (let direction: number = 0; direction < 4; direction++) {
-                        let vector: Point = self.getVector(direction);
-                        let cell: Point  = { 
+                        let vector: IPosition = self.getVector(direction);
+                        let cell: IPosition  = { 
                             x: x + vector.x, 
                             y: y + vector.y
                         };
@@ -268,7 +269,7 @@ class Game {
         return false;
     }
 
-    public positionsEqual(first: Point, second: Point): boolean {
+    public positionsEqual(first: IPosition, second: IPosition): boolean {
         return first.x === second.x && first.y === second.y;
     }
 }

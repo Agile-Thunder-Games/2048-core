@@ -38,16 +38,16 @@ class Grid {
         return cells;
     }
 
-    public randomAvailableCell(): Point {
-        let cells: Point[] = this.availableCells();
+    public randomAvailableCell(): IPosition {
+        let cells: IPosition[] = this.availableCells(); //todo
 
         if (cells.length) {
             return cells[Math.floor(Math.random() * cells.length)];
         }
     }
 
-    public availableCells(): Point[] {
-        let cells: Point[] = [];
+    public availableCells(): IPosition[] {
+        let cells: IPosition[] = [];
 
         this.eachCell((x: number, y: number, tile: Tile) => {
             if (!tile) {
@@ -73,15 +73,15 @@ class Grid {
         return !!this.availableCells().length;
     }
 
-    public cellAvailable(cell: Point): boolean {
+    public cellAvailable(cell: IPosition): boolean {
         return !this.cellOccupied(cell);
     }
     
-    public cellOccupied(cell: Point): boolean {
+    public cellOccupied(cell: IPosition): boolean {
         return !!this.cellContent(cell);
     }
 
-    public cellContent(cell: Point): Tile {
+    public cellContent(cell: IPosition): Tile {
         if (this.withinBounds(cell)) {
             return this.cells[cell.x][cell.y];
         } else {
@@ -97,7 +97,7 @@ class Grid {
         this.cells[tile.x][tile.y] = null;
     }
 
-    public withinBounds(position: Point): boolean {
+    public withinBounds(position: IPosition): boolean {
         return position.x >= 0 && position.x < this.size && position.y >= 0 && position.y < this.size;
     }
 
