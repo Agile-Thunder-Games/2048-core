@@ -6,7 +6,11 @@
         "removeComments": true,
         "preserveConstEnums": true,
         "outFile": "build/app.js",
-        "sourceMap": false
+        "sourceMap": false,
+        "charset": "utf-8",
+        "declaration": false,
+        "diagnostics": true,
+        "listFiles": true
     },
     "exclude": [
         "node_modules"
