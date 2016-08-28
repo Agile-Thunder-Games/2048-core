@@ -1,11 +1,28 @@
-class Grid {
-    private _size: number;
-    private _cells: any[];
-    private _previousState: number[];
+import {Tile} from "./Tile"
 
-    public constructor(size: number, previousState?: number[]) {
+export class Grid {
+    private _size: number;
+    private _cells: Tile[];
+    private _previousState: Tile[][];
+
+    public constructor(size: number, previousState: Tile[][]) {
         this.size = size;
-        this.cells = previousState ? this.fromState(previousState) : this.empty();
+        //this.cells = previousState ? this.fromState(previousState) : this.empty();
+
+        if(previousState) {
+            this.cells = this.fromState(previousState);
+
+            console.log("Cells gets from state");
+        } else {
+            this.cells = this.empty();
+            
+            console.log("empty cells");
+        }   
+        /*} else {
+            console.log(this.empty());
+        }*/
+
+        console.log(this.empty());
     }
 
     public empty(): number[] {
@@ -22,16 +39,40 @@ class Grid {
         return cells;
     }
 
-    public fromState(state: any[]): number[] {
+    /*
+    // !!!!!!!!!! THIS IS NEW CODE BUT DONT WORK
+    public fromState(state: Tile[][]): number[] {
         let cells: any[] = [];
 
         for (let x: number = 0; x < this.size; x++) {
-            let row: any[] = cells[x] = [];
+            let row: Tile[] = cells[x] = [];
+
+            for (let y: number = 0; y < this.size; y++) {
+                let tile: Tile = state[x][y];
+                    
+                row.push(tile ? new Tile(tile.position, tile.value) : null);
+            }
+        }
+
+        return cells;
+    }*/
+
+    public fromState(state: Tile[][]): number[] {
+        let cells: any[] = [];
+
+        for (var x: number = 0; x < this.size; x++) {
+            let row: Tile[] = cells[x] = []; // any
 
             for (let y: number = 0; y < this.size; y++) {
                 let tile: Tile = state[x][y];
                 
-                row.push(tile ? new Tile(tile.position, tile.value) : null);
+                //row.push(tile ? new Tile(tile.position, tile.value) : null);
+
+                if (tile) {
+                    row.push(new Tile(tile.position, tile.value));
+                } else {
+                    row.push(null);
+                }
             }
         }
 
@@ -49,11 +90,11 @@ class Grid {
     public availableCells(): IPosition[] {
         let cells: IPosition[] = [];
 
-        this.eachCell((x: number, y: number, tile: Tile) => {
+        this.eachCell((x: number, y: number, tile: Tile): void => {
             if (!tile) {
                 cells.push({
-                    x: x, 
-                    y: y
+                    x: x,
+                    y: y,
                 });
             }
         });
@@ -61,7 +102,7 @@ class Grid {
         return cells;
     }
 
-    public eachCell(callback: any): void {
+    public eachCell(callback: (x: number, y: number, cells: Tile) => void): void {
         for (let x: number = 0; x < this.size; x++) {
             for (let y: number = 0; y < this.size; y++) {
                 callback(x, y, this.cells[x][y]);
@@ -69,6 +110,7 @@ class Grid {
         }
     }
 
+    // #region ForOptimization
     public cellsAvailable(): boolean {
         return !!this.availableCells().length;
     }
@@ -76,7 +118,7 @@ class Grid {
     public cellAvailable(cell: IPosition): boolean {
         return !this.cellOccupied(cell);
     }
-    
+        
     public cellOccupied(cell: IPosition): boolean {
         return !!this.cellContent(cell);
     }
@@ -88,9 +130,10 @@ class Grid {
             return null;
         }
     }
-
+    // #endregion
+    
     public insertTile(tile: Tile): void {
-         this.cells[tile.x][tile.y] = tile;
+        this.cells[tile.x][tile.y] = tile;
     }
 
     public removeTile(tile: Tile): void {
@@ -98,6 +141,7 @@ class Grid {
     }
 
     public withinBounds(position: IPosition): boolean {
+        console.log("withinBounds called");
         return position.x >= 0 && position.x < this.size && position.y >= 0 && position.y < this.size;
     }
 
@@ -108,7 +152,13 @@ class Grid {
             let row : any[] = cellState[x] = [];
 
             for (let y: number = 0; y < this.size; y++) {
-                row.push(this.cells[x][y] ? this.cells[x][y].serialize() : null);
+                //row.push(this.cells[x][y] ? this.cells[x][y].serialize() : null);
+
+                if(this.cells[x][y]) {
+                    row.push(this.cells[x][y].serialize());
+                } else {
+                    row.push(null);
+                }
             }
         }
 
@@ -118,13 +168,10 @@ class Grid {
         };
     }
 
-    /*
-        Getters and setters
-    */
     public get size() : number {
         return this._size;
     }
-    
+        
     public set size(value : number) {
         this._size = value;
     }
@@ -132,16 +179,16 @@ class Grid {
     public get cells(): any[] {
         return this._cells;
     }
-    
+        
     public set cells(value : any[]) {
         this._cells = value;
     }
 
-    public get previousState() : number[] {
+    public get previousState() : Tile[][] {
         return this._previousState;
     }
-    
-    public set previousState(value : number[]) {
+        
+    public set previousState(value : Tile[][]) {
         this._previousState = value;
     }
 }

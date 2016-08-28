@@ -5,3 +5,10 @@
 > Краят на играта идва с плочката с число 2048 върху нея.
 
 [Играй](http://2048.csyntax.net)
+
+## Build with `tsc` command in your terminal. If use Visual Studio Code, build with `Ctrl + Shift + B`
+
+## Target -> `ES5` or ES6`
+
+## IE Support
+Works still good on IE 10 and IE 11

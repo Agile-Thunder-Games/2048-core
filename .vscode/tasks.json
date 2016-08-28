@@ -3,6 +3,6 @@
     "command": "tsc",
     "isShellCommand": true,
     "args": ["-p", "."],
-    "showOutput": "silent",
+    "showOutput": "always",
     "problemMatcher": "$tsc"
 }

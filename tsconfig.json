@@ -1,29 +1,32 @@
 {
-    "compilerOptions": {
-        "target": "es5",
-        "module": "amd",
-        "noImplicitAny": true,
-        "removeComments": true,
-        "preserveConstEnums": true,
-        "outFile": "build/app.js",
-        "sourceMap": false,
-        "charset": "utf-8",
-        "declaration": false,
+	"compilerOptions": {
+		"target": "es5",
+		"module": "system",
+		"moduleResolution": "node",
+		"sourceMap": false,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"removeComments": true,
+		"noImplicitAny": true,
+		"suppressImplicitAnyIndexErrors": true,
         "diagnostics": true,
-        "listFiles": false,
-        "moduleResolution": "classic"
-    },
-    "exclude": [
+		"outDir": "dist/bin"
+	},
+	"exclude": [
         "node_modules"
     ],
     "files": [
         "src/IPosition.ts",
         "src/ITraversal.ts",
+        "src/IMetadata.ts",
+		"src/IActuatorSelectors.ts",
+        "src/Direction.ts",
         "src/Tile.ts",
         "src/Grid.ts",
         "src/KeyboardInputManager.ts",
-		"src/HtmlActuator.ts",
+        "src/HtmlActuator.ts",
         "src/LocalStorageManager.ts",
-        "src/Game.ts"
+        "src/Game.ts",
+        "src/main.ts"
     ]
 }

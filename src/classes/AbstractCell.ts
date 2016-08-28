@@ -1,10 +1,10 @@
-export class Tile {
+export abstract class AbstractCell {
     private _position: IPosition;
     private _value: number;
     private _previousPosition: IPosition;
     private _x: number;
     private _y: number;
-    private _mergedFrom: Tile[];
+    private _mergedFrom: AbstractCell[];
 
     constructor(position: IPosition, value: number) {
         this.x = position.x;
@@ -14,27 +14,11 @@ export class Tile {
         this.mergedFrom = null;
     }
 
-    public savePosition(): void {
-        this.previousPosition = { 
-            x: this.x,
-            y: this.y,
-        };
-    }
+    abstract savePosition(): void;
 
-    public updatePosition(position: IPosition): void {
-        this.x = position.x;
-        this.y = position.y;
-    }
-        
-    public serialize(): any {
-        return {
-            position: {
-                x: this.x,
-                y: this.y
-            },
-            value: this.value
-        };
-    }
+    abstract updatePosition(position: IPosition): void;
+
+    abstract serialize(): any;
 
     public get position() : IPosition {
         return this._position;
@@ -76,11 +60,11 @@ export class Tile {
         this._y = value;
     }
 
-    public get mergedFrom() : Tile[] {
+    public get mergedFrom() : AbstractCell[] {
         return this._mergedFrom;
     }
         
-    public set mergedFrom(value : Tile[]) {
+    public set mergedFrom(value : AbstractCell[]) {
         this._mergedFrom = value;
     }
 }
