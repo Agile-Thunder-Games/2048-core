@@ -206,13 +206,6 @@ export class Game {
     }
     
     private getVector(direction: Direction): IPosition {
-        /*const directions: any = {
-            0: { x: 0, y: -1 }, // Up
-            1: { x: 1, y: 0 },  // Right
-            2: { x: 0, y: 1 },  // Down
-            3: { x: -1, y: 0 }   // Left
-        };*/
-
         const directions: IPosition[] = [
             { x: 0, y: -1 }, // Up
             { x: 1, y: 0 }, // Right
