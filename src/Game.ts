@@ -79,7 +79,6 @@ export class Game {
 
     private addRandomTile(): void {
         if (this.grid.cellsAvailable()) {
-            //let value: number = Math.random() < 0.9 ? 2 : 4;
             let value: number;
 
             if(Math.random() < 0.9) {
@@ -195,46 +194,6 @@ export class Game {
             }
         }
 
-        // Traverse the grid in the right direction and move tiles
-        /*traversals.x.forEach((x: number) => {
-            traversals.y.((y: number) => {
-                cell = {
-                    x: x, 
-                    y: y
-                };
-                tile = this.grid.cellContent(cell);
-                    
-                if (tile) {
-                    let positions: any = this.findFarthestPosition(cell, vector);
-                    let next: Tile = this.grid.cellContent(positions.next);
-
-                    // Only one merger per row traversal?
-                    if (next && next.value === tile.value && !next.mergedFrom) {
-                        let merged: Tile = new Tile(positions.next, tile.value * 2);
-
-                        merged.mergedFrom = [tile, next];
-                    
-                        this.grid.insertTile(merged);
-                        this.grid.removeTile(tile);
-
-                        tile.updatePosition(positions.next);
-                        this.score += merged.value;
-
-                        if (merged.value === 2048) {
-                            console.log("Won");
-                            this.won = true;
-                        }
-                    } else {
-                        this.moveTile(tile, positions.farthest);
-                    }
-
-                    if (!this.positionsEquals(cell, tile)) {
-                        moved = true; // The tile moved from its original cell!
-                    }
-                }
-            });
-        });*/
-
         if (moved) {
             this.addRandomTile();
 
@@ -245,7 +204,7 @@ export class Game {
             this.actuate();
         }
     }
-    // Todo remove enum Direction and use number type
+    
     private getVector(direction: Direction): IPosition {
         /*const directions: any = {
             0: { x: 0, y: -1 }, // Up
