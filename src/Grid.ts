@@ -1,9 +1,9 @@
 import {Tile} from "./Tile"
 
 export class Grid {
-    private _size: number;
+    /*private _size: number;
     private _cells: Tile[];
-    private _previousState: Tile[][];
+    private _previousState: Tile[][];*/
 
     public constructor(size: number, previousState: Tile[][]) {
         this.size = size;
@@ -169,26 +169,26 @@ export class Grid {
     }
 
     public get size() : number {
-        return this._size;
+        return this.size;
     }
         
     public set size(value : number) {
-        this._size = value;
+        this.size = value;
     }
 
     public get cells(): any[] {
-        return this._cells;
+        return this.cells;
     }
         
     public set cells(value : any[]) {
-        this._cells = value;
+        this.cells = value;
     }
 
     public get previousState() : Tile[][] {
-        return this._previousState;
+        return this.previousState;
     }
-        
+
     public set previousState(value : Tile[][]) {
-        this._previousState = value;
+        this.previousState = value;
     }
 }
