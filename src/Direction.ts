@@ -1,4 +1,3 @@
-// TODO
 export enum Direction {
     Up = 0,
     Right = 1,
