@@ -35,72 +35,20 @@ export class KeyboardInputManager {
         let callbacks: Function[] = this.events[event];
                 
         if (callbacks) {
-            /*callbacks.forEach((callback: any) => {
-                callback(data);
-            });*/
-
             for(let callback of callbacks) {
                 callback(data);
             }
         }
     }
 
-    public listen(): void {
-        /*let map: any = {
-            38: 0, // Up
-            39: 1, // Right
-            40: 2, // Down
-            37: 3, // Left
-            75: 0, // Vim up
-            76: 1, // Vim right
-            74: 2, // Vim down
-            72: 3, // Vim left
-            87: 0, // W
-            68: 1, // D
-            83: 2, // S
-            65: 3,  // A
-        };*/
-
-        /*const map: any = {
-            38: 0, // Up
-            39: 1, // Right
-            40: 2, // Down
-            37: 3, // Left
-        }; // Todo TypeScript Tuple*/
-
-        /*const map: any = [
-            { 38: Direction.Up },
-            { 39: Direction.Right },
-            { 40: Direction.Down },
-            { 37: Direction.Left }
-        ];*/
-    
+    public listen(): void {    
         document.addEventListener("keydown", (event: KeyboardEvent): void => {
             let modifiers: boolean = event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
-            let mapped: Direction; //= map[event.which];
+            let mapped: Direction;
 
             console.log(`event.which.valueOf() == ${event.which.valueOf()}`);
             console.log(`${event.key} ==  ${event.key} == ${event.keyCode}`);
 
-            //if(!modifiers) {
-                // Test case
-               /* if(event.which == 38) { // Todo make with switch case statement
-                    console.log("Up");
-                    mapped = Direction.Up;
-                } else if(event.which == 39) {
-                    console.log("Right");
-                    mapped = Direction.Right;
-                } else if(event.which == 40) {
-                    console.log("Down");
-                    mapped = Direction.Down;
-                } else if (event.which == 37) {
-                    console.log("Left");
-                    mapped = Direction.Left;
-                } else {
-                    console.log("Error");
-                }*/
-            //}
-            // mapped to direction or movecode
             if(!modifiers) {
                 switch(event.keyCode) {
                     case 38: 
@@ -119,7 +67,7 @@ export class KeyboardInputManager {
                         // Todo
                         console.log("Error");
                         break;
-                }   
+                } 
             }
 
             console.log(`typeof(mapped) is undefined == ${typeof(mapped) == undefined}`);
@@ -147,14 +95,9 @@ export class KeyboardInputManager {
         // Respond to swipe events
         let touchStartClientX: number;
         let touchStartClientY: number;
-        //let gameContainer: Element = document.getElementsByClassName("game-container")[0];
         let gameContainer: Element = document.querySelector(".game-container");
 
-        gameContainer.addEventListener(this.eventTouchStart, (event: any): void => { // Todo
-            /*if ((!window.navigator.msPointerEnabled && event.touches.length > 1) || event.targetTouches.length > 1) {
-                return; // Ignore if touching with more than 1 finger
-            }*/
-
+        gameContainer.addEventListener(this.eventTouchStart, (event: any): void => {
             if (window.navigator.msPointerEnabled) {
                 touchStartClientX = event.pageX;
                 touchStartClientY = event.pageY;
@@ -166,16 +109,11 @@ export class KeyboardInputManager {
             event.preventDefault();
         });
 
-        // from any to Event
         gameContainer.addEventListener(this.eventTouchMove, (event: Event): void => {
             event.preventDefault();
         });
 
-        gameContainer.addEventListener(this.eventTouchEnd, (event: TouchEvent | any): void => { // Todo
-            /*if ((!window.navigator.msPointerEnabled && event.touches.length > 0) || event.targetTouches.length > 0) {
-                return; // Ignore if still touching with one or more fingers
-            }*/
-
+        gameContainer.addEventListener(this.eventTouchEnd, (event: TouchEvent | any): void => {
             let touchEndClientX: number;
             let touchEndClientY: number;
 

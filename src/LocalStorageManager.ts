@@ -22,9 +22,7 @@ export class LocalStorageManager {
     }
         
     public get gameState() : any {
-        let stateJSON: string = this.storage.getItem(this.gameStateKey); // stateJSON
-
-        //return stateJSON ? JSON.parse(stateJSON) : null;
+        let stateJSON: string = this.storage.getItem(this.gameStateKey);
 
         if(stateJSON) {
             return JSON.parse(stateJSON);

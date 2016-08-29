@@ -256,7 +256,7 @@ export class Game {
         };
     }
 
-    private movesAvailable(): boolean {
+    private movesAvailable(): boolean { // isMovesAvailable
         return this.grid.cellsAvailable() || this.tileMatchesAvailable();
     }
 

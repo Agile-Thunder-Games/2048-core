@@ -23,16 +23,7 @@ export class HtmlActuator {
         window.requestAnimationFrame((): void => {
             this.clearContainer(this.tileContainer);
 
-            /*grid.cells.forEach((column: Tile[]) => {
-                column.forEach((cell: Tile) => {
-                    if (cell) {
-                        this.addTile(cell);
-                        console.log(`Cell ${JSON.stringify(cell)}`);
-                    }
-                });
-            });*/
-
-            for(let column of grid.cells) { // cells
+            for(let column of grid.cells) {
                 for(let cell of column) {
                     if (cell) {
                         this.addTile(cell);
@@ -44,12 +35,6 @@ export class HtmlActuator {
             this.updateBestScore(metadata.bestScore);
 
             if (metadata.terminated) {
-                /*if (metadata.over) {
-                    this.message(false); // You lose
-                } else if (metadata.won) {
-                    this.message(true); // You win!
-                }*/
-
                 if(metadata.won) {
                     this.message(true); // Win
                 } else {
@@ -59,7 +44,7 @@ export class HtmlActuator {
         });
     }
 
-    public continueGame(): void { // todo remove
+    public continueGame(): void { // todo remove this
         this.clearMessage();
     }
 
@@ -84,16 +69,14 @@ export class HtmlActuator {
         this.applyClasses(wrapper, classes);
 
         inner.classList.add("tile-inner");
-        //inner.textContent = tile.value.toString();
         inner.innerHTML = tile.value.toString();
 
         if (tile.previousPosition) {
             window.requestAnimationFrame((): void => {
-                // Todo
                 classes[2] = this.positionClass({ 
                     x: tile.x,
                     y: tile.y
-                }); // Todo 
+                });
 
                 this.applyClasses(wrapper, classes);
             });
@@ -101,11 +84,6 @@ export class HtmlActuator {
             classes.push("tile-merged");
 
             this.applyClasses(wrapper, classes);
-
-            /*tile.mergedFrom.forEach((merged: Tile) => {
-                this.addTile(merged);
-                console.log("Merged");
-            });*/
 
             for(let merged of tile.mergedFrom) {
                 this.addTile(merged);
@@ -117,14 +95,12 @@ export class HtmlActuator {
         }
 
         console.log(`Element classes are ${classes}`);
-        //alert(`Element classes are ${classes}`);
         wrapper.appendChild(inner);
 
         this.tileContainer.appendChild(wrapper);
     }
 
     public applyClasses(element: HTMLElement, classes: string[]): void {
-        //element.setAttribute("class", classes.join(" "));
         element.className = classes.join(" ");
     }
 
@@ -142,32 +118,16 @@ export class HtmlActuator {
     }
 
     public updateScore(score: number): void {
-        this.clearContainer(this.scoreContainer);
-
-        //let difference: number = score - this.score; // todo
-            
+        this.clearContainer(this.scoreContainer);            
         this.score = score;
-        //this.scoreContainer.textContent = this.score;
-        this.scoreContainer.innerHTML = this.score.toString();
+        this.scoreContainer.innerHTML = this.score.toString() as string;
     }
 
     public updateBestScore(bestScore: number): void {
-        //this.bestContainer.textContent = bestScore;
-        this.bestContainer.innerHTML = bestScore.toString();
+        this.bestContainer.innerHTML = bestScore.toString() as string;
     }
 
-    public message(won: boolean): void {
-        //let type: string = won ? "game-won" : "game-over";
-        //let message: string = won ? "You win! :)" : "Game over! :(";
-
-        //let message: string;
-
-        /*if(won) {
-            message = "You win! :)";
-        } else {
-            message = "Game over! :(";
-        }*/
-        
+    public message(won: boolean): void {        
         let message: string;
         let type: string;
 
@@ -180,7 +140,6 @@ export class HtmlActuator {
         }
 
         this.messageContainer.classList.add(type);
-        //this.messageContainer.getElementsByTagName("p")[0].textContent = message;
         this.messageContainer.querySelector(".message").innerHTML = message;
     }
 

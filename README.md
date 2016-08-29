@@ -12,3 +12,7 @@
 
 ## IE Support
 Works still good on IE 10 and IE 11
+
+## TODO
+* boolean types start with `is`
+* remove `console.log` after test proccess

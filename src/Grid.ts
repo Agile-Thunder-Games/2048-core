@@ -7,7 +7,6 @@ export class Grid {
 
     public constructor(size: number, previousState: Tile[][]) {
         this.size = size;
-        //this.cells = previousState ? this.fromState(previousState) : this.empty();
 
         if(previousState) {
             this.cells = this.fromState(previousState);
@@ -17,12 +16,7 @@ export class Grid {
             this.cells = this.empty();
             
             console.log("empty cells");
-        }   
-        /*} else {
-            console.log(this.empty());
-        }*/
-
-        console.log(this.empty());
+        }
     }
 
     public empty(): number[] {
@@ -39,35 +33,15 @@ export class Grid {
         return cells;
     }
 
-    /*
-    // !!!!!!!!!! THIS IS NEW CODE BUT DONT WORK
-    public fromState(state: Tile[][]): number[] {
-        let cells: any[] = [];
-
-        for (let x: number = 0; x < this.size; x++) {
-            let row: Tile[] = cells[x] = [];
-
-            for (let y: number = 0; y < this.size; y++) {
-                let tile: Tile = state[x][y];
-                    
-                row.push(tile ? new Tile(tile.position, tile.value) : null);
-            }
-        }
-
-        return cells;
-    }*/
-
     public fromState(state: Tile[][]): number[] {
         let cells: any[] = [];
 
         for (var x: number = 0; x < this.size; x++) {
-            let row: Tile[] = cells[x] = []; // any
+            let row: Tile[] = cells[x] = [];
 
             for (let y: number = 0; y < this.size; y++) {
                 let tile: Tile = state[x][y];
                 
-                //row.push(tile ? new Tile(tile.position, tile.value) : null);
-
                 if (tile) {
                     row.push(new Tile(tile.position, tile.value));
                 } else {
@@ -79,7 +53,7 @@ export class Grid {
         return cells;
     }
 
-    public randomAvailableCell(): IPosition {
+    public randomAvailableCell(): IPosition { // get random cell
         let cells: IPosition[] = this.availableCells();
 
         if (cells.length) {
@@ -110,6 +84,8 @@ export class Grid {
         }
     }
 
+    // important
+    // TODO
     // #region ForOptimization
     public cellsAvailable(): boolean {
         return !!this.availableCells().length;
@@ -152,8 +128,6 @@ export class Grid {
             let row : any[] = cellState[x] = [];
 
             for (let y: number = 0; y < this.size; y++) {
-                //row.push(this.cells[x][y] ? this.cells[x][y].serialize() : null);
-
                 if(this.cells[x][y]) {
                     row.push(this.cells[x][y].serialize());
                 } else {
