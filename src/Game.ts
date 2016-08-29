@@ -33,8 +33,6 @@ export class Game {
         this.inputManager.on("keepPlaying", this.keepPlaying.bind(this));
         
         this.setup();
-
-        //alert("Running...")
     }
 
     private restart(): void {
