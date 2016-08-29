@@ -1,10 +1,10 @@
 export class Tile {
-    private _position: IPosition;
+    /*private _position: IPosition;
     private _value: number;
     private _previousPosition: IPosition;
     private _x: number;
     private _y: number;
-    private _mergedFrom: Tile[];
+    private _mergedFrom: Tile[];*/
 
     constructor(position: IPosition, value: number) {
         this.x = position.x;
@@ -37,50 +37,50 @@ export class Tile {
     }
 
     public get position() : IPosition {
-        return this._position;
+        return this.position;
     }
         
     public set position(value : IPosition) {
-        this._position = value;
+        this.position = value;
     }
 
     public get value() : number {
-        return this._value;
+        return this.value;
     }
 
     public set value(value : number) {
-        this._value = value;
+        this.value = value;
     }
         
     public get previousPosition() : IPosition {
-        return this._previousPosition;
+        return this.previousPosition;
     }
 
     public set previousPosition(value : IPosition) {
-        this._previousPosition = value;
+        this.previousPosition = value;
     }
 
     public get x() : number {
-        return this._x;
+        return this.x;
     }
         
     public set x(value : number) {
-        this._x = value;
+        this.x = value;
     }
         
     public get y() : number {
-        return this._y;
+        return this.y;
     }
         
     public set y(value : number) {
-        this._y = value;
+        this.y = value;
     }
 
     public get mergedFrom() : Tile[] {
-        return this._mergedFrom;
+        return this.mergedFrom;
     }
         
     public set mergedFrom(value : Tile[]) {
-        this._mergedFrom = value;
+        this.mergedFrom = value;
     }
 }
