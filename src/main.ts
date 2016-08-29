@@ -12,8 +12,6 @@ function createGame(): void {
     let game: Game = new Game(size, inputManager, storageManager, actuator);
 
     console.log(game);
-
-    game.run();
 }
 
 window.requestAnimationFrame(createGame);

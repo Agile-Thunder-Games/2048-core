@@ -5,7 +5,6 @@ import {KeyboardInputManager} from "./KeyboardInputManager"
 import {LocalStorageManager} from "./LocalStorageManager"
 import {HtmlActuator} from "./HtmlActuator"
 
-// Todo like Blob constructor
 export class Game {
     private size: number;
     private inputManager: KeyboardInputManager;
@@ -25,15 +24,7 @@ export class Game {
         this.actuator = actuator;
         this.startTiles = 2;
 
-        // #region this migrate to void run()
-        /*
-        this.inputManager.on("move", this.move.bind(this));
-        this.inputManager.on("restart", this.restart.bind(this));
-        this.inputManager.on("keepPlaying", this.keepPlaying.bind(this));
-
-        this.setup();
-        */
-        // #endregion
+        this.run();
     }
 
     public run(): void {
