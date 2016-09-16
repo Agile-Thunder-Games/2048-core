@@ -197,7 +197,7 @@ export class Game {
         if (moved) {
             this.addRandomTile();
 
-            if (!this.movesAvailable()) {
+            if (!this.isMovesAvailable()) {
                 this.over = true; // Game over!
             }
 
@@ -256,7 +256,7 @@ export class Game {
         };
     }
 
-    private movesAvailable(): boolean { // isMovesAvailable
+    private isMovesAvailable(): boolean {
         return this.grid.cellsAvailable() || this.tileMatchesAvailable();
     }
 

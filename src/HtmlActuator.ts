@@ -7,16 +7,40 @@ export class HtmlActuator {
     private tileContainer: Element;
     private scoreContainer: Element;
     private bestContainer: Element;
-    private messageContainer: Element;
+    private gameContainer: Element;
+    private gridContainer: Element;
     private score: number;
 
     public constructor() {
         this.tileContainer = document.querySelector(".tile-container");
         this.scoreContainer = document.querySelector(".score-container");
         this.bestContainer = document.querySelector(".best-container");
-        this.messageContainer = document.querySelector(".game-message"); // message-container
+        this.gameContainer = document.querySelector(".game-message");
+        this.gridContainer = document.querySelector(".grid-container");
 
         this.score = 0;
+
+        this.createCells();
+    }
+
+    public createCells(): void {
+        let gridRow: Element;
+	    let gridCell: Element;
+
+		for (var r = 0; r < 4; r++) {
+			gridRow = document.createElement("div");
+			gridRow.className = "grid-row";
+
+			for (var c = 0; c < 4; c++) {
+				gridCell = document.createElement("div");
+					
+				gridCell.className = "grid-cell";
+
+				gridRow.appendChild(gridCell);
+			}
+
+			this.gridContainer.appendChild(gridRow);
+		}
     }
 
     public actuate(grid: Grid, metadata: IMetadata): void {
@@ -44,7 +68,7 @@ export class HtmlActuator {
         });
     }
 
-    public continueGame(): void { // todo remove this
+    public continueGame(): void {
         this.clearMessage();
     }
 
@@ -139,13 +163,13 @@ export class HtmlActuator {
             message = "Game over!";
         }
 
-        this.messageContainer.classList.add(type);
-        this.messageContainer.querySelector(".message").innerHTML = message;
+        this.gameContainer.classList.add(type);
+        this.gameContainer.querySelector(".message").innerHTML = message;
     }
 
     public clearMessage(): void {
         // IE only takes one value to remove at a time.
-        this.messageContainer.classList.remove("game-won");
-        this.messageContainer.classList.remove("game-over");
+        this.gameContainer.classList.remove("game-won");
+        this.gameContainer.classList.remove("game-over");
     }
 }

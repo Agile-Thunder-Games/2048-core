@@ -9,7 +9,7 @@ export class Tile {
     constructor(position: IPosition, value: number) {
         this.x = position.x;
         this.y = position.y;
-        this.value = value || 2; // todo
+        this.value = value || 2;
         this.previousPosition = null;
         this.mergedFrom = null;
     }

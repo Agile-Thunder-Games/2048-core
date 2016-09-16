@@ -53,7 +53,7 @@ export class Grid {
         return cells;
     }
 
-    public randomAvailableCell(): IPosition { // get random cell
+    public randomAvailableCell(): IPosition {
         let cells: IPosition[] = this.availableCells();
 
         if (cells.length) {
@@ -84,19 +84,28 @@ export class Grid {
         }
     }
 
-    // important
-    // TODO
-    // #region ForOptimization
     public cellsAvailable(): boolean {
-        return !!this.availableCells().length;
+        if(this.availableCells().length) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public cellAvailable(cell: IPosition): boolean {
-        return !this.cellOccupied(cell);
+        if(!this.cellOccupied(cell)) {
+            return true;
+        } else {
+            return false;
+        }
     }
         
     public cellOccupied(cell: IPosition): boolean {
-        return !!this.cellContent(cell);
+        if(this.cellContent(cell)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public cellContent(cell: IPosition): Tile {
@@ -106,7 +115,6 @@ export class Grid {
             return null;
         }
     }
-    // #endregion
     
     public insertTile(tile: Tile): void {
         this.cells[tile.x][tile.y] = tile;
@@ -117,7 +125,6 @@ export class Grid {
     }
 
     public withinBounds(position: IPosition): boolean {
-        console.log("withinBounds called");
         return position.x >= 0 && position.x < this.size && position.y >= 0 && position.y < this.size;
     }
 

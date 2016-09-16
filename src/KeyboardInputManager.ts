@@ -63,15 +63,8 @@ export class KeyboardInputManager {
                     case 37:
                         mapped = Direction.Left;
                         break;
-                    default:
-                        // Todo
-                        console.log("Error");
-                        break;
                 } 
             }
-
-            console.log(`typeof(mapped) is undefined == ${typeof(mapped) == undefined}`);
-            console.log(`statement(mapped !== undefined) == ${mapped !== undefined}`);
 
             if (!modifiers) {
                 if (mapped !== undefined) {
@@ -80,11 +73,6 @@ export class KeyboardInputManager {
                     this.emit("move", mapped);
                 }
             }
-
-            // R key restarts the game
-            /*if (!modifiers && event.which === 82) {
-                this.restart.call(this, event);
-            }*/ // This dot work
         });
 
         // Respond to button presses
