@@ -8,10 +8,6 @@ let inputManager: KeyboardInputManager = new KeyboardInputManager();
 let storageManager: LocalStorageManager = new LocalStorageManager();
 let actuator: HtmlActuator = new HtmlActuator();
 
-function createGame(): void {
+window.requestAnimationFrame((): void => {
     let game: Game = new Game(size, inputManager, storageManager, actuator);
-
-    console.log(game);
-}
-
-window.requestAnimationFrame(createGame);
+});

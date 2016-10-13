@@ -1,6 +1,6 @@
 interface IMetadata {
     score: number;
-    bestScore: number;
+    bestScore: any; // Todo, maybe bug
     terminated: boolean;
     over: boolean;
     won: boolean;

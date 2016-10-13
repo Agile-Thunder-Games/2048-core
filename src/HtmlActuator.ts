@@ -1,7 +1,7 @@
-import {KeyboardInputManager} from "./KeyboardInputManager"
-import {LocalStorageManager} from "./LocalStorageManager"
-import {Grid} from "./Grid"
-import {Tile} from "./Tile"
+import {KeyboardInputManager} from "./KeyboardInputManager";
+import {LocalStorageManager} from "./LocalStorageManager";
+import {Grid} from "./Grid";
+import {Tile} from "./Tile";
 
 export class HtmlActuator {
     private tileContainer: Element;

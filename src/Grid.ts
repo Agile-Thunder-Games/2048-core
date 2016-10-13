@@ -1,4 +1,4 @@
-import {Tile} from "./Tile"
+import {Tile} from "./Tile";
 
 export class Grid {
     private _size: number;
@@ -84,7 +84,7 @@ export class Grid {
         }
     }
 
-    public cellsAvailable(): boolean {
+    public isCellsAvailable(): boolean {
         if(this.availableCells().length) {
             return true;
         } else {
@@ -92,15 +92,15 @@ export class Grid {
         }
     }
 
-    public cellAvailable(cell: IPosition): boolean {
-        if(!this.cellOccupied(cell)) {
+    public isCellAvailable(cell: IPosition): boolean {
+        if(!this.isCellOccupied(cell)) {
             return true;
         } else {
             return false;
         }
     }
         
-    public cellOccupied(cell: IPosition): boolean {
+    public isCellOccupied(cell: IPosition): boolean {
         if(this.cellContent(cell)) {
             return true;
         } else {

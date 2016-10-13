@@ -1,9 +1,9 @@
-import {Grid} from "./Grid"
-import {Tile} from "./Tile"
-import {Direction} from "./Direction"
-import {KeyboardInputManager} from "./KeyboardInputManager"
-import {LocalStorageManager} from "./LocalStorageManager"
-import {HtmlActuator} from "./HtmlActuator"
+import {Grid} from "./Grid";
+import {Tile} from "./Tile";
+import {Direction} from "./Direction";
+import {KeyboardInputManager} from "./KeyboardInputManager";
+import {LocalStorageManager} from "./LocalStorageManager";
+import {HtmlActuator} from "./HtmlActuator";
 
 export class Game {
     private size: number;
@@ -78,7 +78,7 @@ export class Game {
     }
 
     private addRandomTile(): void {
-        if (this.grid.cellsAvailable()) {
+        if (this.grid.isCellsAvailable()) {
             let value: number;
 
             if(Math.random() < 0.9) {
@@ -248,7 +248,7 @@ export class Game {
                 x: previous.x + vector.x,
                 y: previous.y + vector.y
             };
-        } while (this.grid.withinBounds(cell) && this.grid.cellAvailable(cell));
+        } while (this.grid.withinBounds(cell) && this.grid.isCellAvailable(cell));
 
         return {
             farthest: previous,
@@ -257,10 +257,10 @@ export class Game {
     }
 
     private isMovesAvailable(): boolean {
-        return this.grid.cellsAvailable() || this.tileMatchesAvailable();
+        return this.grid.isCellsAvailable() || this.isTileMatchesAvailable();
     }
 
-    private tileMatchesAvailable(): boolean {
+    private isTileMatchesAvailable(): boolean {
         let tile: Tile;
 
         for (let x: number = 0; x < this.size; x++) {

@@ -13,11 +13,11 @@ export class LocalStorageManager {
         this.storage.removeItem(this.gameStateKey);
     }
 
-    public get bestScore() : number {
+    public get bestScore() : string | number {
         return this.storage.getItem(this.bestScoreKey) || 0;
     }
 
-    public set bestScore(value : number) {
+    public set bestScore(value : string | number) {
         this.storage.setItem(this.bestScoreKey, value.toString());
     }
         
@@ -31,7 +31,7 @@ export class LocalStorageManager {
         }
     }
 
-    public set gameState(value : any) {
+    public set gameState(value: any) {
         this.storage.setItem(this.gameStateKey, JSON.stringify(value));
     }
 }

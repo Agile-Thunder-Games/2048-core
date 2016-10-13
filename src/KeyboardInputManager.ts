@@ -1,4 +1,4 @@
-import {Direction} from "./Direction"
+import {Direction} from "./Direction";
 
 export class KeyboardInputManager {
     private events: string[];
