@@ -1,7 +1,7 @@
-import {KeyboardInputManager} from "./KeyboardInputManager"
-import {LocalStorageManager} from "./LocalStorageManager"
-import {HtmlActuator} from "./HtmlActuator"
-import {Game} from "./Game"
+import {KeyboardInputManager} from "./KeyboardInputManager";
+import {LocalStorageManager} from "./LocalStorageManager";
+import {HtmlActuator} from "./HtmlActuator";
+import {Game} from "./Game";
 
 let size: number = 4;
 let inputManager: KeyboardInputManager = new KeyboardInputManager();

@@ -14,5 +14,14 @@
 Works still good on IE 10 and IE 11
 
 ## TODO
-* boolean types start with `is`
 * remove `console.log` after test proccess
+* use TypeScript 2.0 features
+* use Dependency Injection
+* update fiels in classes
+
+## News in TypeScript 2.0
+* property = (): type => type;
+
+## Bugs
+* don`t work on IE 9
+* Grid events

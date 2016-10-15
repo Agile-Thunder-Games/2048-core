@@ -8,7 +8,7 @@ export class Grid {
     public constructor(size: number, previousState: Tile[][]) {
         this.size = size;
 
-        if(previousState) {
+        if (previousState) {
             this.cells = this.fromState(previousState);
 
             console.log("Cells gets from state");

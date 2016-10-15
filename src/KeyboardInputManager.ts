@@ -85,7 +85,7 @@ export class KeyboardInputManager {
         let touchStartClientY: number;
         let gameContainer: Element = document.querySelector(".game-container");
 
-        gameContainer.addEventListener(this.eventTouchStart, (event: any): void => {
+        gameContainer.addEventListener(this.eventTouchStart, (event: TouchEvent | any): void => {
             if (window.navigator.msPointerEnabled) {
                 touchStartClientX = event.pageX;
                 touchStartClientY = event.pageY;
@@ -97,9 +97,7 @@ export class KeyboardInputManager {
             event.preventDefault();
         });
 
-        gameContainer.addEventListener(this.eventTouchMove, (event: Event): void => {
-            event.preventDefault();
-        });
+        gameContainer.addEventListener(this.eventTouchMove, (event: Event): void => event.preventDefault());
 
         gameContainer.addEventListener(this.eventTouchEnd, (event: TouchEvent | any): void => {
             let touchEndClientX: number;
@@ -121,7 +119,21 @@ export class KeyboardInputManager {
 
             if (Math.max(absDx, absDy) > 10) {
                 // (right : left) : (down : up)
-                this.emit("move", absDx > absDy ? (dx > 0 ? 1 : 3) : (dy > 0 ? 2 : 0)); // Todo
+                //this.emit("move", absDx > absDy ? (dx > 0 ? 1 : 3) : (dy > 0 ? 2 : 0)); // Todo
+
+                if(absDx > absDy) {
+                    if (dx > 0) {
+                        this.emit("move", 1);
+                    } else {
+                        this.emit("move", 3);
+                    }
+                } else {
+                    if (dx > 0) {
+                        this.emit("move", 2);
+                    } else {
+                        this.emit("move", 0);
+                    }
+                }
             }
         });
     }

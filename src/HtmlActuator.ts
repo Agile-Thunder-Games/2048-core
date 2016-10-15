@@ -147,7 +147,7 @@ export class HtmlActuator {
         this.scoreContainer.innerHTML = this.score.toString() as string;
     }
 
-    public updateBestScore(bestScore: number): void {
+    public updateBestScore(bestScore: number | string): void {
         this.bestContainer.innerHTML = bestScore.toString() as string;
     }
 
