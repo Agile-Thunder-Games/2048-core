@@ -2,6 +2,8 @@
 	"compilerOptions": {
 		"target": "es5",
 		"module": "system",
+        "noImplicitThis": true,
+        "strictNullChecks": false,
 		"moduleResolution": "node",
 		"sourceMap": false,
 		"emitDecoratorMetadata": true,
@@ -10,22 +12,10 @@
 		"noImplicitAny": true,
 		"suppressImplicitAnyIndexErrors": true,
         "diagnostics": true,
+        "rootDir": "src",
 		"outDir": "dist/bin"
 	},
 	"exclude": [
         "node_modules"
-    ],
-    "files": [
-        "src/IPosition.ts",
-        "src/ITraversal.ts",
-        "src/IMetadata.ts",
-        "src/Direction.ts",
-        "src/Tile.ts",
-        "src/Grid.ts",
-        "src/KeyboardInputManager.ts",
-        "src/HtmlActuator.ts",
-        "src/LocalStorageManager.ts",
-        "src/Game.ts",
-        "src/main.ts"
     ]
 }
