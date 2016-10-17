@@ -36,7 +36,7 @@ export class Grid {
     public fromState(state: Tile[][]): number[] {
         let cells: any[] = [];
 
-        for (var x: number = 0; x < this.size; x++) {
+        for (let x: number = 0; x < this.size; x++) {
             let row: Tile[] = cells[x] = [];
 
             for (let y: number = 0; y < this.size; y++) {

@@ -27,11 +27,11 @@ export class HtmlActuator {
         let gridRow: Element;
 	    let gridCell: Element;
 
-		for (var r = 0; r < 4; r++) {
+		for (let r = 0; r < 4; r++) {
 			gridRow = document.createElement("div");
 			gridRow.className = "grid-row";
 
-			for (var c = 0; c < 4; c++) {
+			for (let c = 0; c < 4; c++) {
 				gridCell = document.createElement("div");
 					
 				gridCell.className = "grid-cell";
