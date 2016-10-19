@@ -46,9 +46,6 @@ export class KeyboardInputManager {
             let modifiers: boolean = event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
             let mapped: Direction;
 
-            console.log(`event.which.valueOf() == ${event.which.valueOf()}`);
-            console.log(`${event.key} ==  ${event.key} == ${event.keyCode}`);
-
             if(!modifiers) {
                 switch(event.keyCode) {
                     case 38: 
@@ -66,12 +63,10 @@ export class KeyboardInputManager {
                 } 
             }
 
-            if (!modifiers) {
-                if (mapped !== undefined) {
-                    event.preventDefault();
+            if (typeof mapped !== undefined) {
+                event.preventDefault();
 
-                    this.emit("move", mapped);
-                }
+                this.emit("move", mapped);
             }
         });
 

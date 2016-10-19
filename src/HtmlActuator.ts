@@ -117,8 +117,7 @@ export class HtmlActuator {
 
             this.applyClasses(wrapper, classes);
         }
-
-        console.log(`Element classes are ${classes}`);
+        
         wrapper.appendChild(inner);
 
         this.tileContainer.appendChild(wrapper);

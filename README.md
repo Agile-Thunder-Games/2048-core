@@ -13,12 +13,6 @@
 ## IE Support
 Works still good on IE 10 and IE 11
 
-## TODO
-* remove `console.log` after test proccess
-* use TypeScript 2.0 features
-* use Dependency Injection
-* update fiels in classes
-
 ## News in TypeScript 2.0
 * property = (): type => type;
 

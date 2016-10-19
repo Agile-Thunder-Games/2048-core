@@ -10,12 +10,8 @@ export class Grid {
 
         if (previousState) {
             this.cells = this.fromState(previousState);
-
-            console.log("Cells gets from state");
         } else {
             this.cells = this.empty();
-            
-            console.log("empty cells");
         }
     }
 
