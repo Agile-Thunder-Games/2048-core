@@ -114,9 +114,10 @@ export class KeyboardInputManager {
 
             if (Math.max(absDx, absDy) > 10) {
                 // (right : left) : (down : up)
-                //this.emit("move", absDx > absDy ? (dx > 0 ? 1 : 3) : (dy > 0 ? 2 : 0)); // Todo
+                this.emit("move", absDx > absDy ? (dx > 0 ? 1 : 3) : (dy > 0 ? 2 : 0)); // Todo
 
-                if(absDx > absDy) {
+                // BUG
+                /*if(absDx > absDy) {
                     if (dx > 0) {
                         this.emit("move", 1);
                     } else {
@@ -128,7 +129,7 @@ export class KeyboardInputManager {
                     } else {
                         this.emit("move", 0);
                     }
-                }
+                }*/
             }
         });
     }
