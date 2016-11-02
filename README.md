@@ -1,4 +1,4 @@
-# 2048 Game Core
+# 2048 Game
 
 > В 2048 размествате плочки с числа и ги обединявате 
 > като се събират само плочки с еднакви числа (2+2, 8+8, 64+64 и т.н.). 
@@ -6,16 +6,12 @@
 
 [Играй](http://2048.csyntax.net)
 
-## Build with `tsc` command in your terminal. If use Visual Studio Code, build with `Ctrl + Shift + B`
+## Build
+* Using VisualStudio Code
+    * use `Ctrl + Shift + B`
+* Using Terminal
+    * use `tsc` command
 
-## Target -> `ES5` or ES6`
-
-## IE Support
-Works still good on IE 10 and IE 11
-
-## News in TypeScript 2.0
-* property = (): type => type;
-
-## Bugs
-* don`t work on IE 9
-* Grid events
+## Running on Docker
+* `docker build -t 2048 .`
+* `docker run -p 80:80 -it 2048`

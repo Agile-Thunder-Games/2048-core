@@ -5,7 +5,7 @@ export class Grid {
     private _cells: Tile[];
     private _previousState: Tile[][];
 
-    public constructor(size: number, previousState: Tile[][]) {
+    constructor(size: number, previousState: Tile[][]) {
         this.size = size;
 
         if (previousState) {
@@ -15,7 +15,7 @@ export class Grid {
         }
     }
 
-    public empty(): number[] {
+    empty(): number[] {
         let cells: any[] = [];
 
         for (let x: number = 0; x < this.size; x++) {
@@ -29,7 +29,7 @@ export class Grid {
         return cells;
     }
 
-    public fromState(state: Tile[][]): number[] {
+    fromState(state: Tile[][]): number[] {
         let cells: any[] = [];
 
         for (let x: number = 0; x < this.size; x++) {
@@ -49,7 +49,7 @@ export class Grid {
         return cells;
     }
 
-    public randomAvailableCell(): IPosition {
+    randomAvailableCell(): IPosition {
         let cells: IPosition[] = this.availableCells();
 
         if (cells.length) {
@@ -57,7 +57,7 @@ export class Grid {
         }
     }
 
-    public availableCells(): IPosition[] {
+    availableCells(): IPosition[] {
         let cells: IPosition[] = [];
 
         this.eachCell((x: number, y: number, tile: Tile): void => {
@@ -72,7 +72,7 @@ export class Grid {
         return cells;
     }
 
-    public eachCell(callback: (x: number, y: number, cells: Tile) => void): void {
+    eachCell(callback: (x: number, y: number, cells: Tile) => void): void {
         for (let x: number = 0; x < this.size; x++) {
             for (let y: number = 0; y < this.size; y++) {
                 callback(x, y, this.cells[x][y]);
