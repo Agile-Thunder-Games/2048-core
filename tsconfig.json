@@ -13,7 +13,7 @@
 		"suppressImplicitAnyIndexErrors": true,
         "diagnostics": true,
         "rootDir": "src",
-		"outDir": "dist/bin"
+		"outDir": "js"
 	},
 	"exclude": [
         "node_modules"

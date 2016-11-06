@@ -4,22 +4,14 @@ import {Grid} from "./Grid";
 import {Tile} from "./Tile";
 
 export class HtmlActuator {
-    private tileContainer: Element;
-    private scoreContainer: Element;
-    private bestContainer: Element;
-    private gameContainer: Element;
-    private gridContainer: Element;
-    private score: number;
+    private tileContainer: Element = document.querySelector(".tile-container");
+    private scoreContainer: Element = document.querySelector(".score-container");
+    private bestContainer: Element = document.querySelector(".best-container");
+    private gridContainer: Element = document.querySelector(".grid-container");
+    private gameContainer: Element = document.querySelector(".game-message");
+    private score: number = 0;
 
     public constructor() {
-        this.tileContainer = document.querySelector(".tile-container");
-        this.scoreContainer = document.querySelector(".score-container");
-        this.bestContainer = document.querySelector(".best-container");
-        this.gameContainer = document.querySelector(".game-message");
-        this.gridContainer = document.querySelector(".grid-container");
-
-        this.score = 0;
-
         this.createCells();
     }
 
@@ -33,7 +25,7 @@ export class HtmlActuator {
 
 			for (let c = 0; c < 4; c++) {
 				gridCell = document.createElement("div");
-					
+
 				gridCell.className = "grid-cell";
 
 				gridRow.appendChild(gridCell);
@@ -60,9 +52,9 @@ export class HtmlActuator {
 
             if (metadata.terminated) {
                 if(metadata.won) {
-                    this.message(true); // Win
+                    this.message(true);
                 } else {
-                    this.message(false); // Lose
+                    this.message(false);
                 }
             }
         });
@@ -83,7 +75,6 @@ export class HtmlActuator {
         let inner: HTMLDivElement = document.createElement("div");
         let position : IPosition = tile.previousPosition || { x: tile.x, y: tile.y };
         let positionClass: string = this.positionClass(position);
-
         let classes: string[] = ["tile", `tile-${tile.value}`, positionClass];
 
         if (tile.value > 2048) {
@@ -93,11 +84,11 @@ export class HtmlActuator {
         this.applyClasses(wrapper, classes);
 
         inner.classList.add("tile-inner");
-        inner.innerHTML = tile.value.toString();
+        inner.innerHTML = tile.value.toString() as string;
 
         if (tile.previousPosition) {
             window.requestAnimationFrame((): void => {
-                classes[2] = this.positionClass({ 
+                classes[2] = this.positionClass({
                     x: tile.x,
                     y: tile.y
                 });
@@ -117,7 +108,7 @@ export class HtmlActuator {
 
             this.applyClasses(wrapper, classes);
         }
-        
+
         wrapper.appendChild(inner);
 
         this.tileContainer.appendChild(wrapper);
@@ -128,7 +119,7 @@ export class HtmlActuator {
     }
 
     public normalizePosition(position: IPosition): IPosition {
-        return { 
+        return {
             x: position.x + 1,
             y: position.y + 1
         };
@@ -136,12 +127,12 @@ export class HtmlActuator {
 
     public positionClass(position: IPosition): string {
         position = this.normalizePosition(position);
-            
+
         return `tile-position-${position.x}-${position.y}`;
     }
 
     public updateScore(score: number): void {
-        this.clearContainer(this.scoreContainer);            
+        this.clearContainer(this.scoreContainer);
         this.score = score;
         this.scoreContainer.innerHTML = this.score.toString() as string;
     }
@@ -150,7 +141,7 @@ export class HtmlActuator {
         this.bestContainer.innerHTML = bestScore.toString() as string;
     }
 
-    public message(won: boolean): void {        
+    public message(won: boolean): void {
         let message: string;
         let type: string;
 
@@ -167,7 +158,6 @@ export class HtmlActuator {
     }
 
     public clearMessage(): void {
-        // IE only takes one value to remove at a time.
         this.gameContainer.classList.remove("game-won");
         this.gameContainer.classList.remove("game-over");
     }

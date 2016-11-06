@@ -5,7 +5,7 @@ export class KeyboardInputManager {
     private eventTouchStart: string;
     private eventTouchMove: string;
     private eventTouchEnd: string;
-        
+
     public constructor() {
         this.events = [];
 
@@ -33,7 +33,7 @@ export class KeyboardInputManager {
 
     public emit(event: string, data: any): void {
         let callbacks: Function[] = this.events[event];
-                
+
         if (callbacks) {
             for(let callback of callbacks) {
                 callback(data);
@@ -41,14 +41,17 @@ export class KeyboardInputManager {
         }
     }
 
-    public listen(): void {    
+    public listen(): void {
         document.addEventListener("keydown", (event: KeyboardEvent): void => {
             let modifiers: boolean = event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
             let mapped: Direction;
 
             if(!modifiers) {
                 switch(event.keyCode) {
-                    case 38: 
+                    case 37:
+                        mapped = Direction.Left;
+                        break;
+                    case 38:
                         mapped = Direction.Up;
                         break;
                     case 39:
@@ -57,10 +60,7 @@ export class KeyboardInputManager {
                     case 40:
                         mapped = Direction.Down;
                         break;
-                    case 37:
-                        mapped = Direction.Left;
-                        break;
-                } 
+                }
             }
 
             if (typeof mapped !== undefined) {
@@ -114,7 +114,7 @@ export class KeyboardInputManager {
 
             if (Math.max(absDx, absDy) > 10) {
                 // (right : left) : (down : up)
-                this.emit("move", absDx > absDy ? (dx > 0 ? 1 : 3) : (dy > 0 ? 2 : 0)); // Todo
+                this.emit("move", absDx > absDy ? (dx > 0 ? 1 : 3) : (dy > 0 ? 2 : 0));
             }
         });
     }
@@ -127,13 +127,13 @@ export class KeyboardInputManager {
 
     public keepPlaying(event: Event): void {
         event.preventDefault();
-            
+
         this.emit("keepPlaying", null);
     }
 
     public bindButtonPress(selector: string, fn: Function): void {
         let button: Element = document.querySelector(selector);
-            
+
         button.addEventListener("click", fn.bind(this));
         button.addEventListener(this.eventTouchEnd, fn.bind(this));
     }

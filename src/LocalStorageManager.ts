@@ -2,10 +2,10 @@ export class LocalStorageManager {
     private bestScoreKey: string;
     private gameStateKey: string;
     private storage: Storage;
-        
+
     public constructor() {
         this.bestScoreKey = "bestScore";
-        this.gameStateKey = "gameState";        
+        this.gameStateKey = "gameState";
         this.storage = window.localStorage;
     }
 
@@ -20,7 +20,7 @@ export class LocalStorageManager {
     public set bestScore(value : string | number) {
         this.storage.setItem(this.bestScoreKey, value.toString());
     }
-        
+
     public get gameState() : any {
         let stateJSON: string = this.storage.getItem(this.gameStateKey);
 
