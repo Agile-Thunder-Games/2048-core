@@ -5,13 +5,3 @@
 > Краят на играта идва с плочката с число 2048 върху нея.
 
 [Играй](http://2048.csyntax.net)
-
-## Build
-* Using VisualStudio Code
-    * use `Ctrl + Shift + B`
-* Using Terminal
-    * use `tsc` command
-
-## Running on Docker
-* `docker build -t 2048 .`
-* `docker run -p 80:80 -it 2048`
