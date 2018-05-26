@@ -188,6 +188,7 @@ hr {
     margin-right: 15px;
     float: left;
     background: rgba(244, 216, 115, 0.25);
+    border-radius: 50%;
 }
 
 .grid-cell:last-child {
@@ -203,6 +204,7 @@ hr {
     width: 107px;
     height: 107px;
     line-height: 107px;
+    border-radius: 50%;
 }
 
 .tile.tile-position-1-1 {
