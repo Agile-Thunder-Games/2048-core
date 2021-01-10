@@ -1,12 +1,13 @@
 {
     "compilerOptions": {
-        "module": "system",
+        "module": "amd",
         "target": "es6",
         "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,
         "outDir": "bin/js",
-        "sourceMap": false
+        "sourceMap": true,
+        "suppressImplicitAnyIndexErrors": true,
     },
     "include": [
         "src"
