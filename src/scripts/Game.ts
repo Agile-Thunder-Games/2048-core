@@ -24,7 +24,7 @@ export class Game {
         this.actuator = actuator;
         this.startTiles = 2;
 
-        this.run();
+        //this.run();
     }
 
     public run(): void {
