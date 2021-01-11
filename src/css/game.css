@@ -10,12 +10,12 @@ html, body {
 body {
     margin: 1em 0;
 }
-
+/*
 .heading:after {
     content: "";
     display: block;
     clear: both;
-}
+}*/
 
 .scores-container {
     float: left;
@@ -24,7 +24,7 @@ body {
 
 .score-container,
 .best-container {
-    position: relative;
+    /*position: relative;*/
     display: inline-block;
     background: rgb(0, 113, 188);
     padding: 15px 25px;
@@ -88,7 +88,7 @@ hr {
 
 .game-container {
     margin-top: 1em;
-    position: relative;
+   /* position: relative;*/
     padding: 0.85em;
     cursor: default;
     -webkit-touch-callout: none;
@@ -102,10 +102,10 @@ hr {
     background: rgb(0, 113, 188);
     width: 750px;
     height: 750px;
-    border-radius: 50%;
-      display: flex;
+   /* border-radius: 50%;*/
+    /*  display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center;*/
     
 }
 
@@ -166,8 +166,7 @@ hr {
 }
 
 .grid-container {
-    /*position: absolute;
-    z-index: 1;8*/
+    position: absolute;
 }
 
 .grid-row {

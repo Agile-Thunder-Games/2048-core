@@ -1,3 +1,6 @@
+
+import "../css/game.css";
+
 import {KeyboardInputManager} from "./KeyboardInputManager";
 import {LocalStorageManager} from "./LocalStorageManager";
 import {HtmlActuator} from "./HtmlActuator";
@@ -13,3 +16,5 @@ const actuator: HtmlActuator = new HtmlActuator();
 const game  = new Game(size, inputManager, storageManager, actuator);
 
 game.run();
+
+
