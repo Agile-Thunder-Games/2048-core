@@ -1,5 +1,6 @@
 
 import "../css/game.css";
+import '../css/game-mobile.css';
 
 import {KeyboardInputManager} from "./KeyboardInputManager";
 import {LocalStorageManager} from "./LocalStorageManager";
@@ -16,5 +17,3 @@ const actuator: HtmlActuator = new HtmlActuator();
 const game  = new Game(size, inputManager, storageManager, actuator);
 
 game.run();
-
-

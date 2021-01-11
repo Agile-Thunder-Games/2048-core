@@ -1,3 +1,10 @@
+:root {
+    --blue: rgb(0, 113, 188);
+    --white: rgb(248, 248, 248);
+    --width: 475px;
+    --heigh: 475px;
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -10,12 +17,12 @@ html, body {
 body {
     margin: 1em 0;
 }
-/*
+
 .heading:after {
     content: "";
     display: block;
     clear: both;
-}*/
+}
 
 .scores-container {
     float: left;
@@ -24,7 +31,7 @@ body {
 
 .score-container,
 .best-container {
-    /*position: relative;*/
+    position: relative;
     display: inline-block;
     background: rgb(0, 113, 188);
     padding: 15px 25px;
@@ -82,7 +89,7 @@ hr {
 }
 
 .container {
-    width: 750px;
+    width: calc(var(--width) + 1.5%);
     margin: 0 auto;
 }
 
@@ -100,8 +107,8 @@ hr {
     user-select: none;
     touch-action: none;
     background: rgb(0, 113, 188);
-    width: 750px;
-    height: 750px;
+    width: var(--width);
+    height: var(--heigh);
    /* border-radius: 50%;*/
     /*  display: flex;
   justify-content: center;
@@ -196,12 +203,13 @@ hr {
     margin-right: 0;
 }
 
+/*
 .tile-container {
- /* position: absolute;
+ position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);*/
-}
+  transform: translate(-50%, -50%);
+}*/
 
 .tile, .tile .tile-inner {
     width: 107px;
