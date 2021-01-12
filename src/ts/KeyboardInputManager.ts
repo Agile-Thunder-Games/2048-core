@@ -42,31 +42,32 @@ export default class KeyboardInputManager {
     }
 
     public listen(): void {
+        let direction: Direction;
+
         document.addEventListener("keydown", (event: KeyboardEvent): void => {
             let modifiers: boolean = event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
-            let mapped: Direction;
 
             if(!modifiers) {
-                switch(event.keyCode) {
-                    case 37:
-                        mapped = Direction.Left;
+                switch(event.code) {
+                    case "ArrowLeft":
+                        direction = Direction.Left;
                         break;
-                    case 38:
-                        mapped = Direction.Up;
+                    case "ArrowUp":
+                        direction = Direction.Up;
                         break;
-                    case 39:
-                        mapped = Direction.Right;
+                    case "ArrowRight":
+                        direction = Direction.Right;
                         break;
-                    case 40:
-                        mapped = Direction.Down;
+                    case "ArrowDown":
+                        direction = Direction.Down;
                         break;
                 }
             }
 
-            if (typeof mapped !== undefined) {
+            if (typeof direction !== undefined) {
                 event.preventDefault();
 
-                this.emit("move", mapped);
+                this.emit("move", direction);
             }
         });
 

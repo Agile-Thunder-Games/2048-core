@@ -22,10 +22,10 @@ export default class LocalStorageManager {
     }
 
     public get gameState() : any {
-        let stateJSON: string = this.storage.getItem(this.gameStateKey);
+        let jsonState: string = this.storage.getItem(this.gameStateKey);
 
-        if(stateJSON) {
-            return JSON.parse(stateJSON);
+        if(jsonState) {
+            return JSON.parse(jsonState);
         } else {
             return null;
         }
