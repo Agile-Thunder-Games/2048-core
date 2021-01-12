@@ -1,11 +1,11 @@
-import {Grid} from "./Grid";
-import {Tile} from "./Tile";
-import {Direction} from "./Direction";
-import {KeyboardInputManager} from "./KeyboardInputManager";
-import {LocalStorageManager} from "./LocalStorageManager";
-import {HtmlActuator} from "./HtmlActuator";
+import Tile from "./Tile";
+import Grid from "./Grid";
+import { Direction } from "./Direction";
+import HtmlActuator from "./HtmlActuator";
+import LocalStorageManager from "./LocalStorageManager";
+import KeyboardInputManager from "./KeyboardInputManager";
 
-export class Game {
+export default class Game {
     private size: number;
     private inputManager: KeyboardInputManager;
     private storageManager: LocalStorageManager;
@@ -23,8 +23,6 @@ export class Game {
         this.storageManager = storageManager;
         this.actuator = actuator;
         this.startTiles = 2;
-
-        //this.run();
     }
 
     public run(): void {

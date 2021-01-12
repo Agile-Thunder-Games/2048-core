@@ -1,14 +1,13 @@
-import {KeyboardInputManager} from "./KeyboardInputManager";
-import {LocalStorageManager} from "./LocalStorageManager";
-import {Grid} from "./Grid";
-import {Tile} from "./Tile";
+import Tile from "./Tile";
+import Grid from "./Grid";
 
-export class HtmlActuator {
+export default class HtmlActuator {
     private tileContainer: Element = document.querySelector(".tile-container");
     private scoreContainer: Element = document.querySelector(".score-container");
     private bestContainer: Element = document.querySelector(".best-container");
     private gridContainer: Element = document.querySelector(".grid-container");
     private gameContainer: Element = document.querySelector(".game-message");
+    
     private score: number = 0;
 
     public constructor() {

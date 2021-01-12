@@ -1,7 +1,7 @@
-export class LocalStorageManager {
-    private bestScoreKey: string;
-    private gameStateKey: string;
-    private storage: Storage;
+export default class LocalStorageManager {
+    private readonly bestScoreKey: string;
+    private readonly gameStateKey: string;
+    private readonly storage: Storage;
 
     public constructor() {
         this.bestScoreKey = "bestScore";

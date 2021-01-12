@@ -1,4 +1,4 @@
-export class Tile {
+export default class Tile {
     private _position: IPosition;
     private _value: number;
     private _previousPosition: IPosition;

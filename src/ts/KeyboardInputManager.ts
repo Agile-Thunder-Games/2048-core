@@ -1,6 +1,6 @@
-import {Direction} from "./Direction";
+import { Direction } from "./Direction";
 
-export class KeyboardInputManager {
+export default class KeyboardInputManager {
     private events: string[];
     private eventTouchStart: string;
     private eventTouchMove: string;

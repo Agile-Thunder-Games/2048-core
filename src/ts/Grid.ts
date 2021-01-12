@@ -1,6 +1,6 @@
-import { Tile } from "./Tile";
+import Tile from "./Tile";
 
-export class Grid {
+export default class Grid {
     private _size: number;
     private _cells: Tile[];
     private _previousState: Tile[][];

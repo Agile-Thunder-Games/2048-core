@@ -1,13 +1,14 @@
 {
     "compilerOptions": {
-        "module": "amd",
-        "target": "es6",
-        "noImplicitAny": true,
-        "removeComments": true,
-        "preserveConstEnums": true,
-        "outDir": "bin/js",
+        "outDir": "dist/js",
+        "target": "es2015",
+        "module": "es2020",
+        "lib": [
+            "es2018",
+            "dom"
+        ],
         "sourceMap": true,
-        "suppressImplicitAnyIndexErrors": true,
+        "suppressImplicitAnyIndexErrors": true
     },
     "include": [
         "src"
