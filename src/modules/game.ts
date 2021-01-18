@@ -1,9 +1,10 @@
-import Tile from "./Tile";
-import Grid from "./Grid";
-import { Direction } from "./Direction";
-import HtmlActuator from "./HtmlActuator";
-import LocalStorageManager from "./LocalStorageManager";
-import KeyboardInputManager from "./KeyboardInputManager";
+import Tile from "./tile";
+import Grid from "./grid";
+import { Direction } from "./direction";
+import HtmlActuator from "./htmlActuator";
+import LocalStorageManager from "./localStorageManager";
+import KeyboardInputManager from "./keyboardInputManager";
+import { Position, Traversal } from "./types";
 
 export default class Game {
     private size: number;
@@ -130,7 +131,7 @@ export default class Game {
         });
     }
 
-    private moveTile(tile: Tile, cell: IPosition): void {
+    private moveTile(tile: Tile, cell: Position): void {
         this.grid.cells[tile.x][tile.y] = null;
         this.grid.cells[cell.x][cell.y] = tile;
     
@@ -143,10 +144,10 @@ export default class Game {
             return; // Don't do anything if the game's over
         }
 
-        let cell: IPosition;
+        let cell: Position;
         let tile: Tile;
-        let vector: IPosition = this.getVector(direction);
-        let traversals: ITraversal = this.buildTraversals(vector);
+        let vector: Position = this.getVector(direction);
+        let traversals: Traversal = this.buildTraversals(vector);
         let moved: boolean = false;
 
         // Save the current tile positions and remove merger information
@@ -203,8 +204,8 @@ export default class Game {
         }
     }
     
-    private getVector(direction: Direction): IPosition {
-        const directions: IPosition[] = [
+    private getVector(direction: Direction): Position {
+        const directions: Position[] = [
             { x: 0, y: -1 }, // Up
             { x: 1, y: 0 }, // Right
             { x: 0, y: 1 }, // Down
@@ -214,8 +215,8 @@ export default class Game {
         return directions[direction];
     }    
 
-    private buildTraversals(vector: IPosition): ITraversal {
-        let traversals: ITraversal = {
+    private buildTraversals(vector: Position): Traversal {
+        let traversals: Traversal = {
             x: [],
             y: [],
         };
@@ -237,8 +238,8 @@ export default class Game {
         return traversals;
     }
 
-    private findFarthestPosition(cell: IPosition, vector: IPosition): any {
-        let previous: IPosition;
+    private findFarthestPosition(cell: Position, vector: Position): any {
+        let previous: Position;
 
         do {
             previous = cell;
@@ -270,8 +271,8 @@ export default class Game {
 
                 if (tile) {
                     for (let direction: number = 0; direction < 4; direction++) {
-                        let vector: IPosition = this.getVector(direction);
-                        let cell: IPosition  = {
+                        let vector: Position = this.getVector(direction);
+                        let cell: Position  = {
                             x: x + vector.x, 
                             y: y + vector.y
                         };
@@ -289,7 +290,7 @@ export default class Game {
         return false;
     }
 
-    private positionsEquals(first: IPosition, second: IPosition): boolean {
+    private positionsEquals(first: Position, second: Position): boolean {
         return (first.x === second.x) && (first.y === second.y);
     }
 }

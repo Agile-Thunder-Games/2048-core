@@ -1,12 +1,14 @@
+import { Position } from "./types";
+
 export default class Tile {
-    private _position: IPosition;
+    private _position: Position;
     private _value: number;
-    private _previousPosition: IPosition;
+    private _previousPosition: Position;
     private _x: number;
     private _y: number;
     private _mergedFrom: Tile[];
 
-    constructor(position: IPosition, value: number) {
+    constructor(position: Position, value: number) {
         this.x = position.x;
         this.y = position.y;
         this.value = value || 2;
@@ -21,7 +23,7 @@ export default class Tile {
         };
     }
 
-    public updatePosition(position: IPosition): void {
+    public updatePosition(position: Position): void {
         this.x = position.x;
         this.y = position.y;
     }
@@ -36,11 +38,11 @@ export default class Tile {
         };
     }
 
-    public get position() : IPosition {
+    public get position() : Position {
         return this._position;
     }
         
-    public set position(value : IPosition) {
+    public set position(value : Position) {
         this._position = value;
     }
 
@@ -52,11 +54,11 @@ export default class Tile {
         this._value = value;
     }
         
-    public get previousPosition() : IPosition {
+    public get previousPosition() : Position {
         return this._previousPosition;
     }
 
-    public set previousPosition(value : IPosition) {
+    public set previousPosition(value : Position) {
         this._previousPosition = value;
     }
 

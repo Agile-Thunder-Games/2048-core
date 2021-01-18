@@ -1,4 +1,5 @@
-import Tile from "./Tile";
+import Tile from "./tile";
+import { Position } from "./types";
 
 export default class Grid {
     private _size: number;
@@ -49,16 +50,16 @@ export default class Grid {
         return cells;
     }
 
-    randomAvailableCell(): IPosition {
-        let cells: IPosition[] = this.availableCells();
+    randomAvailableCell(): Position {
+        let cells: Position[] = this.availableCells();
 
         if (cells.length) {
             return cells[Math.floor(Math.random() * cells.length)];
         }
     }
 
-    availableCells(): IPosition[] {
-        let cells: IPosition[] = [];
+    availableCells(): Position[] {
+        let cells: Position[] = [];
 
         this.eachCell((x: number, y: number, tile: Tile): void => {
             if (!tile) {
@@ -88,7 +89,7 @@ export default class Grid {
         }
     }
 
-    public isCellAvailable(cell: IPosition): boolean {
+    public isCellAvailable(cell: Position): boolean {
         if(!this.isCellOccupied(cell)) {
             return true;
         } else {
@@ -96,7 +97,7 @@ export default class Grid {
         }
     }
         
-    public isCellOccupied(cell: IPosition): boolean {
+    public isCellOccupied(cell: Position): boolean {
         if(this.cellContent(cell)) {
             return true;
         } else {
@@ -104,7 +105,7 @@ export default class Grid {
         }
     }
 
-    public cellContent(cell: IPosition): Tile {
+    public cellContent(cell: Position): Tile {
         if (this.withinBounds(cell)) {
             return this.cells[cell.x][cell.y];
         } else {
@@ -120,7 +121,7 @@ export default class Grid {
         this.cells[tile.x][tile.y] = null;
     }
 
-    public withinBounds(position: IPosition): boolean {
+    public withinBounds(position: Position): boolean {
         return position.x >= 0 && position.x < this.size && position.y >= 0 && position.y < this.size;
     }
 

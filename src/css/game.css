@@ -11,18 +11,18 @@ html, body {
 }
 
 body {
-   
-
-    background: var(--white);
     color: var(--blue);
+    background: var(--white);
     font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
     font-size: 18px;
-    
 }
 
 .container {
-    margin: 0 auto;
-    max-width: var(--width);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .footer {

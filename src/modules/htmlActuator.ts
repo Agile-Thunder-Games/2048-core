@@ -1,5 +1,6 @@
-import Tile from "./Tile";
-import Grid from "./Grid";
+import Tile from "./tile";
+import Grid from "./grid";
+import { Metadata, Position } from "./types";
 
 export default class HtmlActuator {
     private tileContainer: Element = document.querySelector(".tile-container");
@@ -34,7 +35,7 @@ export default class HtmlActuator {
 		}
     }
 
-    public actuate(grid: Grid, metadata: IMetadata): void {
+    public actuate(grid: Grid, metadata: Metadata): void {
         window.requestAnimationFrame((): void => {
             this.clearContainer(this.tileContainer);
 
@@ -72,7 +73,7 @@ export default class HtmlActuator {
     public addTile(tile: Tile): void {
         let wrapper: HTMLDivElement = document.createElement("div");
         let inner: HTMLDivElement = document.createElement("div");
-        let position : IPosition = tile.previousPosition || { x: tile.x, y: tile.y };
+        let position : Position = tile.previousPosition || { x: tile.x, y: tile.y };
         let positionClass: string = this.positionClass(position);
         let classes: string[] = ["tile", `tile-${tile.value}`, positionClass];
 
@@ -117,14 +118,14 @@ export default class HtmlActuator {
         element.className = classes.join(" ");
     }
 
-    public normalizePosition(position: IPosition): IPosition {
+    public normalizePosition(position: Position): Position {
         return {
             x: position.x + 1,
             y: position.y + 1
         };
     }
 
-    public positionClass(position: IPosition): string {
+    public positionClass(position: Position): string {
         position = this.normalizePosition(position);
 
         return `tile-position-${position.x}-${position.y}`;

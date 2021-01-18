@@ -1,11 +1,10 @@
-
 import "./css/game.css";
 import './css/game-mobile.css';
 
-import Game from "./ts/Game";
-import HtmlActuator from "./ts/HtmlActuator";
-import KeyboardInputManager from "./ts/KeyboardInputManager";
-import LocalStorageManager from "./ts/LocalStorageManager";
+import Game from "./modules/game";
+import HtmlActuator from "./modules/htmlActuator";
+import KeyboardInputManager from "./modules/keyboardInputManager";
+import LocalStorageManager from "./modules/localStorageManager";
 
 const size: number = 4;
 const inputManager: KeyboardInputManager = new KeyboardInputManager();
