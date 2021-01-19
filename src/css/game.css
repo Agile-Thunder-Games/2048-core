@@ -2,7 +2,19 @@
     --blue: rgb(0, 113, 188);
     --white: rgb(248, 248, 248);
     --width: 475px;
-    --heigh: 475px;
+    --heigh: var(--width);
+    --tile-color: var(--white);
+    --tile-4-background: var(--white);
+    --tile-8-background: rgb(0, 174, 239);;
+    --tile-16-background: rgb(145, 0, 145);
+    --tile-32-background: rgb(255, 138, 0);
+    --tile-64-background: rgb(140, 198, 0);
+    --tile-128-background: rgb(121, 122, 223);
+    --tile-256-background: rgb(86, 65, 132);
+    --tile-512-background:  rgb(23, 35, 61);
+    --tile-1024-background: rgb(255, 121, 25);
+    --tile-2048-background:  rgb(200, 83, 0);
+    --tile-super-backgroud:  #38362f;
 }
 
 html, body {
@@ -99,16 +111,8 @@ hr {
     margin-bottom: 30px;
 }
 
-/*
-.container {
-    width: calc(var(--width) + 1.5%);
-    margin: 0 auto;
-}
-*/
-
 .game-container {
     margin-top: 1em;
-   /* position: relative;*/
     padding: 0.85em;
     cursor: default;
     -webkit-touch-callout: none;
@@ -122,12 +126,7 @@ hr {
     background: rgb(0, 113, 188);
     width: var(--width);
     height: var(--heigh);
-    border-radius: 3.5rem;
-   /* border-radius: 50%;*/
-    /*  display: flex;
-  justify-content: center;
-  align-items: center;*/
-    
+    border-radius: 3.5rem;    
 }
 
 .game-container .game-message {
@@ -216,14 +215,6 @@ hr {
 .grid-cell:last-child {
     margin-right: 0;
 }
-
-/*
-.tile-container {
- position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}*/
 
 .tile, .tile .tile-inner {
     width: 107px;
@@ -364,37 +355,37 @@ hr {
 }
 
 .tile.tile-2 .tile-inner {
-    background: white;
+    background: var(--tile-color);
 }
 
 .tile.tile-4 .tile-inner {
-    background: whitesmoke;
+    background: var(--tile-4-background);
 }
 
 .tile.tile-8 .tile-inner {
-    color: white;
-    background: rgb(0, 174, 239);
+    color: var(--tile-color);
+    background: var(--tile-8-background);
 }
 
 .tile.tile-16 .tile-inner {
-    color: white;
-    background: rgb(145, 0, 145);
+    color: var(--tile-color);
+    background: var(--tile-16-background);
 }
 
 .tile.tile-32 .tile-inner {
-    color: white;
-    background:rgb(255, 138, 0);
+    color: var(--tile-color);
+    background: var(--tile-32-background);
 }
 
 .tile.tile-64 .tile-inner {
-    color: white;
-    background: rgb(140, 198, 0);
+    color: var(--tile-color);
+    background: var(--tile-64-background);
 }
 
 .tile.tile-128 .tile-inner {
-    color: white;
-    background: rgb(121, 122, 223);
     font-size: 45px;
+    color: var(--tile-color);
+    background: var(--tile-128-background);
 }
 
 @media screen and (max-width: 520px) {
@@ -404,9 +395,9 @@ hr {
 }
 
 .tile.tile-256 .tile-inner {
-    color: white;
-    background: rgb(86, 65, 132);
     font-size: 45px;
+    color: var(--tile-color);
+    background: var(--tile-256-background);
 }
 
 @media screen and (max-width: 520px) {
@@ -416,9 +407,9 @@ hr {
 }
 
 .tile.tile-512 .tile-inner {
-    color: white;
-    background: rgb(23, 35, 61);
     font-size: 45px;
+    color: var(--tile-color);
+    background: var(--tile-512-background);
 }
 
 @media screen and (max-width: 520px) {
@@ -428,9 +419,9 @@ hr {
 }
 
 .tile.tile-1024 .tile-inner {
-    color: white;
-    background: rgb(255, 121, 25);
     font-size: 35px;
+    color: var(--tile-color);
+    background: var(--tile-1024-background);
 }
 
 @media screen and (max-width: 520px) {
@@ -440,9 +431,9 @@ hr {
 }
 
 .tile.tile-2048 .tile-inner {
-    color: white;
-    background: rgb(200, 83, 0);
     font-size: 35px;
+    color: var(--tile-color);
+    background: var(--tile-2048-background);
 }
 
 @media screen and (max-width: 520px) {
@@ -452,9 +443,9 @@ hr {
 }
 
 .tile.tile-super .tile-inner {
-    color: white;
-    background: #3c3a32;
     font-size: 30px;
+    color: var(--tile-color);
+    background: var(--tile-super-backgroud);
 }
 
 @media screen and (max-width: 520px) {

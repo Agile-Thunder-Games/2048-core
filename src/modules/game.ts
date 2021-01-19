@@ -1,41 +1,46 @@
 import Tile from "./tile";
 import Grid from "./grid";
 import { Direction } from "./direction";
+
 import HtmlActuator from "./htmlActuator";
 import LocalStorageManager from "./localStorageManager";
 import KeyboardInputManager from "./keyboardInputManager";
+
 import { Position, Traversal } from "./types";
 
+import { TYPES } from "./types";
+import { inject, injectable } from "inversify";
+
+@injectable()
 export default class Game {
-    private size: number;
-    private inputManager: KeyboardInputManager;
-    private storageManager: LocalStorageManager;
-    private actuator: HtmlActuator;
-    private startTiles: number;
+   // private size: number;
+
+    //private startTiles: number;
     private over: boolean;
     private won: boolean;
     private isPlaying: boolean;
     private grid: Grid;
     private score: number;
 
-    public constructor(size: number, inputManager: KeyboardInputManager, storageManager: LocalStorageManager, actuator: HtmlActuator) {
-        this.size = size;
-        this.inputManager = inputManager;
-        this.storageManager = storageManager;
-        this.actuator = actuator;
-        this.startTiles = 2;
-    }
+    private readonly size = 4;
+    private readonly startCells = 2;
+
+    constructor(
+        @inject(TYPES.HtmlActuator) private readonly actuator: HtmlActuator,
+        @inject(TYPES.KeyboardInputManager) private readonly input: KeyboardInputManager, 
+        @inject(TYPES.LocalStorageManager) private readonly storage: LocalStorageManager,
+    ) {}
 
     public run(): void {
-        this.inputManager.on("move", this.move.bind(this));
-        this.inputManager.on("restart", this.restart.bind(this));
-        this.inputManager.on("keepPlaying", this.keepPlaying.bind(this));
+        this.input.on("move", this.move.bind(this));
+        this.input.on("restart", this.restart.bind(this));
+        this.input.on("keepPlaying", this.keepPlaying.bind(this));
         
         this.setup();
     }
 
     private restart(): void {
-        this.storageManager.clearGameState();
+        this.storage.clearGameState();
         this.actuator.continueGame(); // Clear the game won/lost message
         this.setup();
     }
@@ -50,7 +55,7 @@ export default class Game {
     }
 
     private setup(): void {
-        let previousState: Game = this.storageManager.gameState;
+        let previousState: Game = this.storage.gameState;
 
         if (previousState) {
             this.grid = new Grid(previousState.grid.size, previousState.grid.cells);
@@ -70,13 +75,13 @@ export default class Game {
         this.actuate();
     }
 
-    private addStartTiles(): void {
-        for (let i: number = 0; i < this.startTiles; i++) {
+    private addStartTiles() {
+        for (let i: number = 0; i < this.startCells; i++) {
             this.addRandomTile();
         }
     }
 
-    private addRandomTile(): void {
+    private addRandomTile() {
         if (this.grid.isCellsAvailable()) {
             let value: number;
 
@@ -92,33 +97,33 @@ export default class Game {
         }
     }
 
-    private actuate(): void {
-        if (this.storageManager.bestScore < this.score) {
-            this.storageManager.bestScore = this.score;
+    private actuate() {
+        if (this.storage.bestScore < this.score) {
+            this.storage.bestScore = this.score;
         }
 
         if (this.over) {
-            this.storageManager.clearGameState();
+            this.storage.clearGameState();
         } else {
-            this.storageManager.gameState = this.serialize();
+            this.storage.gameState = this.serialize();
         }
 
         this.actuator.actuate(this.grid, {
             score: this.score,
             over: this.over,
             won: this.won,
-            bestScore: this.storageManager.bestScore,
+            bestScore: this.storage.bestScore,
             terminated: this.isGameTerminated
         });
     }
 
-    private serialize(): any {
+    private serialize() {
         return {
             grid: this.grid.serialize(),
             score: this.score,
             over: this.over,
             won: this.won,
-            keepPlaying: this.keepPlaying
+            keepPlaying: this.keepPlaying,
         };
     }
 
@@ -131,14 +136,14 @@ export default class Game {
         });
     }
 
-    private moveTile(tile: Tile, cell: Position): void {
+    private moveTile(tile: Tile, position: Position) {
         this.grid.cells[tile.x][tile.y] = null;
-        this.grid.cells[cell.x][cell.y] = tile;
+        this.grid.cells[position.x][position.y] = tile;
     
-        tile.updatePosition(cell);
+        tile.updatePosition(position);
     }
 
-    private move(direction: Direction): void {
+    private move(direction: Direction) {
         // 0: up, 1: right, 2: down, 3: left
         if (this.isGameTerminated) {
             return; // Don't do anything if the game's over
@@ -238,7 +243,7 @@ export default class Game {
         return traversals;
     }
 
-    private findFarthestPosition(cell: Position, vector: Position): any {
+    private findFarthestPosition(cell: Position, vector: Position) {
         let previous: Position;
 
         do {
@@ -255,11 +260,11 @@ export default class Game {
         };
     }
 
-    private isMovesAvailable(): boolean {
+    private isMovesAvailable() {
         return this.grid.isCellsAvailable() || this.isTileMatchesAvailable();
     }
 
-    private isTileMatchesAvailable(): boolean {
+    private isTileMatchesAvailable() {
         let tile: Tile;
 
         for (let x: number = 0; x < this.size; x++) {

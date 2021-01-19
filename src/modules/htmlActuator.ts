@@ -2,6 +2,10 @@ import Tile from "./tile";
 import Grid from "./grid";
 import { Metadata, Position } from "./types";
 
+import { injectable } from "inversify";
+import "reflect-metadata";
+
+@injectable()
 export default class HtmlActuator {
     private tileContainer: Element = document.querySelector(".tile-container");
     private scoreContainer: Element = document.querySelector(".score-container");

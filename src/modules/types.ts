@@ -15,3 +15,10 @@ export type Metadata = {
     over: boolean;
     won: boolean;
 }
+
+export const TYPES = {
+    Game: Symbol.for('Game'),
+    HtmlActuator: Symbol.for('HtmlActuator'),
+    KeyboardInputManager: Symbol.for('KeyboardInputManager'),
+    LocalStorageManager: Symbol.for('LocalStorageManager'),
+};

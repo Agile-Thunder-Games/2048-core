@@ -3,14 +3,13 @@
         "outDir": "dist/js",
         "target": "es2015",
         "module": "es2020",
-        "lib": [
-            "es2018",
-            "dom"
-        ],
+        "lib": ["es2018","dom"],
+        "types": ["reflect-metadata"],
         "sourceMap": true,
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
         "suppressImplicitAnyIndexErrors": false
     },
-    "include": [
-        "src"
-    ]
+    "include": ["src"]
 }

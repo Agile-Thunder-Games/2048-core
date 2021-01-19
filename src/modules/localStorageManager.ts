@@ -1,3 +1,8 @@
+
+import { injectable } from "inversify";
+import "reflect-metadata";
+
+@injectable()
 export default class LocalStorageManager {
     private readonly bestScoreKey: string;
     private readonly gameStateKey: string;

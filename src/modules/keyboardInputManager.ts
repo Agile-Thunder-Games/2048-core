@@ -1,5 +1,9 @@
 import { Direction } from "./direction";
 
+import { injectable } from "inversify";
+import "reflect-metadata";
+
+@injectable()
 export default class KeyboardInputManager {
     private events: string[];
     private eventTouchStart: string;
